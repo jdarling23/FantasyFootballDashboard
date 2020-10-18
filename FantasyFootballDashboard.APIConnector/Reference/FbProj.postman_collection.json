@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "f4876d2e-a2e2-4bf6-a88b-e45763433892",
+		"name": "FbProj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CBS Player Stats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Put Token Here",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cbssports.com/fantasy/stats?timeframe=2020&period=20201011&player_id=223571,132668version=3.0&response_format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cbssports",
+						"com"
+					],
+					"path": [
+						"fantasy",
+						"stats"
+					],
+					"query": [
+						{
+							"key": "timeframe",
+							"value": "2020"
+						},
+						{
+							"key": "period",
+							"value": "20201011"
+						},
+						{
+							"key": "player_id",
+							"value": "223571,132668version=3.0"
+						},
+						{
+							"key": "response_format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CBS Auth Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cbssports.com/general/oauth/test/access_token?user_id=jamesdarling2@gmail.com&league_id=bailiff&sport=football&response_format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cbssports",
+						"com"
+					],
+					"path": [
+						"general",
+						"oauth",
+						"test",
+						"access_token"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "jamesdarling2@gmail.com"
+						},
+						{
+							"key": "league_id",
+							"value": "bailiff"
+						},
+						{
+							"key": "sport",
+							"value": "football"
+						},
+						{
+							"key": "response_format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CBS Live Scoring",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Put Token Here",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cbssports.com/fantasy/league/scoring/live?version=3.0&response_format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cbssports",
+						"com"
+					],
+					"path": [
+						"fantasy",
+						"league",
+						"scoring",
+						"live"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": "3.0"
+						},
+						{
+							"key": "response_format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

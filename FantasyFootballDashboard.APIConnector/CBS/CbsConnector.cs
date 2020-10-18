@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FantasyFootballDashboard.APIConnector.CBS.Models;
 using FantasyFootballDashboard.APIConnector.Exceptions;
 using FantasyFootballDashboard.APIConnector.Interface;
-using FantasyFootballDashboard.APIConnector.Models;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -82,5 +82,6 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 
 			return players;
 		}
+
 	}
 }
