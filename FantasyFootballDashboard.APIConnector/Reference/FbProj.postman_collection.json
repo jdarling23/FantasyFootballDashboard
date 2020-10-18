@@ -60,7 +60,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api.cbssports.com/general/oauth/test/access_token?user_id=jamesdarling2@gmail.com&league_id=bailiff&sport=football&response_format=json",
+					"raw": "https://api.cbssports.com/general/oauth/test/access_token?user_id=&league_id=bailiff&sport=football&response_format=json",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -76,7 +76,7 @@
 					"query": [
 						{
 							"key": "user_id",
-							"value": "jamesdarling2@gmail.com"
+							"value": "email here"
 						},
 						{
 							"key": "league_id",
