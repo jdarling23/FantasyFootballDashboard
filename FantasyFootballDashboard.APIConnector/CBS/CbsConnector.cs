@@ -57,6 +57,8 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 			request.AddParameter("version", "3.0", ParameterType.QueryString);
 			request.AddParameter("response_format", "json", ParameterType.QueryString);
 
+			_client.AddDefaultHeader("Authorization", $"Bearer {_token}");
+
 			var response = _client.Post(request);
 
 			var parsedResponse = JsonConvert.DeserializeObject<CbsScoringPayload>(response.Content);
