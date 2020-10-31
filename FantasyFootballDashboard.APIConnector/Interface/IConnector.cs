@@ -9,4 +9,9 @@ namespace FantasyFootballDashboard.APIConnector.Interface
 	{
 
 	}
+
+	public class DefaultConnector : IConnector
+	{
+
+	}
 }
