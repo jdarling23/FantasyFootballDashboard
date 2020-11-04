@@ -13,4 +13,8 @@
       <Folder Include="Reference" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FantasyFootballDashboard.Models\FantasyFootballDashboard.Models.csproj" />
+    </ItemGroup>
+
 </Project>

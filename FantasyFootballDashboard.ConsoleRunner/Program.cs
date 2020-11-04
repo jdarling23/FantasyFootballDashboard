@@ -1,8 +1,8 @@
 ﻿using FantasyFootballDashboard.APIConnector.CBS;
 using FantasyFootballDashboard.APIConnector.Interface;
 using FantasyFootballDashboard.ConsoleRunner.TestHarness;
-using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Security.Cryptography;
 
 namespace FantasyFootballDashboard.ConsoleRunner
 {
@@ -10,9 +10,6 @@ namespace FantasyFootballDashboard.ConsoleRunner
     {
         static void Main(string[] args)
         {
-            // Dependency Injection Container
-            var services = new ServiceCollection();
-
             // Prepare default objects
             IConnector connector = new DefaultConnector();
             ITester tester = new DefaultTester();
@@ -29,15 +26,13 @@ namespace FantasyFootballDashboard.ConsoleRunner
 
                 var selection = Console.ReadLine();
 
-                var serviceProvider = services.BuildServiceProvider();
-
                 switch(selection.Trim())
                 {
                     case("1"):
-                        ConfigureServicesForCbs(services);
                         selectionSuccessfullyMade = true;
-                        connector = serviceProvider.GetService<CbsConnector>();
-                        tester = new CbsTester();
+                        var cbsCredentials = GetCbsCredentials();
+                        connector = new CbsConnector(cbsCredentials.league, cbsCredentials.username);
+                        tester = new CbsTester(connector);
                         break;
                     case("2"):
                         Console.WriteLine("My Fantsy League is not yet enabled. Please make another selection.");
@@ -46,19 +41,34 @@ namespace FantasyFootballDashboard.ConsoleRunner
                         Console.WriteLine("ESPN is not yet enabled. Please make another selection.");
                         break;
                     default:
-                        Console.WriteLine($"{selection} is not valid. Please tyr again.");
+                        Console.WriteLine($"{selection} is not valid. Please try again.");
                         break;
                 }
             }
-        
-            var testResult = tester.ExecuteTest(connector);
-            Console.WriteLine(testResult);
+
+            try
+            {
+                var testResult = tester.ExecuteTest();
+                Console.WriteLine(testResult);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error encountered: {ex.Message}");
+            }
+
+            Console.WriteLine("Ending application, please click any key...");
+            Console.ReadLine();
         }
 
-        private static void ConfigureServicesForCbs(ServiceCollection services)
+        private static (string league, string username) GetCbsCredentials()
         {
-            services
-                .AddTransient<IConnector, CbsConnector>();
+            Console.WriteLine("Enter CBS League Name: ");
+            var inputLeague = Console.ReadLine ();
+
+            Console.WriteLine("Enter CBS Username: ");
+            var inputUsername = Console.ReadLine();
+
+            return (league: inputLeague, username: inputUsername);
         }
     }
 }
