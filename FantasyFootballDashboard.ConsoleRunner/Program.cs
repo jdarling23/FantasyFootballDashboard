@@ -1,8 +1,8 @@
 ﻿using FantasyFootballDashboard.APIConnector.CBS;
-using FantasyFootballDashboard.APIConnector.Interface;
+using FantasyFootballDashboard.APIConnector.MFL;
 using FantasyFootballDashboard.ConsoleRunner.TestHarness;
+using FantasyFootballDashboard.Models.Interface;
 using System;
-using System.Security.Cryptography;
 
 namespace FantasyFootballDashboard.ConsoleRunner
 {
@@ -35,7 +35,8 @@ namespace FantasyFootballDashboard.ConsoleRunner
                         tester = new CbsTester(connector);
                         break;
                     case("2"):
-                        Console.WriteLine("My Fantsy League is not yet enabled. Please make another selection.");
+                        selectionSuccessfullyMade = true;
+                        connector = new MflConnector("2020", "le username", "le password");
                         break;
                     case("3"):
                         Console.WriteLine("ESPN is not yet enabled. Please make another selection.");

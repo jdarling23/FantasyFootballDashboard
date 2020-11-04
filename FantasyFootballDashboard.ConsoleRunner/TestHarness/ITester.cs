@@ -1,6 +1,3 @@
-using FantasyFootballDashboard.APIConnector.Interface;
-using System;
-
 namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
     public interface ITester

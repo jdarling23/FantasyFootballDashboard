@@ -1,7 +1,6 @@
-using FantasyFootballDashboard.Models;
 using System.Collections.Generic;
 
-namespace FantasyFootballDashboard.APIConnector.Interface
+namespace FantasyFootballDashboard.Models.Interface
 {
     /// <summary>
     /// Interface for an API connection
