@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using FantasyFootballDashboard.APIConnector.CBS.Models;
 using FantasyFootballDashboard.APIConnector.Exceptions;
-using FantasyFootballDashboard.APIConnector.Interface;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 

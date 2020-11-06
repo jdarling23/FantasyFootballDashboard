@@ -1,4 +1,4 @@
-using FantasyFootballDashboard.APIConnector.Interface;
+using FantasyFootballDashboard.Models.Interface;
 using System.Text;
 
 namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
