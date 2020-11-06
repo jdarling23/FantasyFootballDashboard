@@ -14,8 +14,14 @@ namespace FantasyFootballDashboard.APIConnector.MFL.Models
         [JsonProperty("franchise_id")]
         public string FranchiseId { get; set; }
 
+        private string _url;
+
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public string Url 
+        { 
+            get => _url; 
+            set => _url = value.Substring(0, value.IndexOf(".com/")) + ".com/"; 
+        }
     }
 
     public class MflLeagueRequestPayload

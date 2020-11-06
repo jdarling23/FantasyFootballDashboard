@@ -25,25 +25,34 @@ namespace FantasyFootballDashboard.ConsoleRunner
                 Console.WriteLine("For ESPN Fantasy Sports, enter 3.");
 
                 var selection = Console.ReadLine();
-
-                switch(selection.Trim())
+                try
                 {
-                    case("1"):
-                        selectionSuccessfullyMade = true;
-                        var cbsCredentials = GetCbsCredentials();
-                        connector = new CbsConnector(cbsCredentials.league, cbsCredentials.username);
-                        tester = new CbsTester(connector);
-                        break;
-                    case("2"):
-                        selectionSuccessfullyMade = true;
-                        connector = new MflConnector("2020", "le username", "le password");
-                        break;
-                    case("3"):
-                        Console.WriteLine("ESPN is not yet enabled. Please make another selection.");
-                        break;
-                    default:
-                        Console.WriteLine($"{selection} is not valid. Please try again.");
-                        break;
+                    switch (selection.Trim())
+                    {
+                        case ("1"):
+                            selectionSuccessfullyMade = true;
+                            var cbsCredentials = GetCbsCredentials();
+                            connector = new CbsConnector(cbsCredentials.league, cbsCredentials.username);
+                            tester = new CbsTester(connector);
+                            break;
+                        case ("2"):
+                            selectionSuccessfullyMade = true;
+                            var mflCredentials = GetMflCrednetials();
+                            connector = new MflConnector(mflCredentials.year, mflCredentials.username, mflCredentials.password);
+                            tester = new MflTester(connector);
+                            break;
+                        case ("3"):
+                            Console.WriteLine("ESPN is not yet enabled. Please make another selection.");
+                            break;
+                        default:
+                            Console.WriteLine($"{selection} is not valid. Please try again.");
+                            break;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    selectionSuccessfullyMade = false;
+                    Console.WriteLine($"Error configuring selection: {ex.Message}");
                 }
             }
 
@@ -70,6 +79,44 @@ namespace FantasyFootballDashboard.ConsoleRunner
             var inputUsername = Console.ReadLine();
 
             return (league: inputLeague, username: inputUsername);
+        }
+
+        private static (string year, string username, string password) GetMflCrednetials()
+        {
+            Console.WriteLine("Enter MFL League Year: ");
+            var inputYear = Console.ReadLine();
+
+            Console.WriteLine("Enter MFL Username: ");
+            var inputUsername = Console.ReadLine();
+
+            // This leverages some fun stuff to obscure the password entry
+            Console.WriteLine("Enter MFL Password: ");
+            ConsoleKeyInfo keyInfo;
+            string inputPassword = string.Empty;
+            do
+            {
+                keyInfo = Console.ReadKey(true);
+                // Skip if Backspace or Enter is Pressed
+                if (keyInfo.Key != ConsoleKey.Backspace && keyInfo.Key != ConsoleKey.Enter)
+                {
+                    inputPassword += keyInfo.KeyChar;
+                    Console.Write("*");
+                }
+                else
+                {
+                    if (keyInfo.Key == ConsoleKey.Backspace && inputPassword.Length > 0)
+                    {
+                        // Remove last charcter if Backspace is Pressed
+                        inputPassword = inputPassword.Substring(0, (inputPassword.Length - 1));
+                        Console.Write("b b");
+                    }
+                }
+            }
+            // Stops Getting Password Once Enter is Pressed
+            while (keyInfo.Key != ConsoleKey.Enter);
+            Console.WriteLine(string.Empty);
+
+            return (year: inputYear, username: inputUsername, password: inputPassword);
         }
     }
 }
