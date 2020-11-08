@@ -1,4 +1,5 @@
 ﻿using FantasyFootballDashboard.APIConnector.CBS;
+using FantasyFootballDashboard.APIConnector.ESPN;
 using FantasyFootballDashboard.APIConnector.MFL;
 using FantasyFootballDashboard.ConsoleRunner.TestHarness;
 using FantasyFootballDashboard.Models.Interface;
@@ -42,7 +43,10 @@ namespace FantasyFootballDashboard.ConsoleRunner
                             tester = new MflTester(connector);
                             break;
                         case ("3"):
-                            Console.WriteLine("ESPN is not yet enabled. Please make another selection.");
+                            selectionSuccessfullyMade = true;
+                            var espnCrednetials = GetEspnCredentials();
+                            connector = new EspnConnector(espnCrednetials.year, espnCrednetials.leagueId, espnCrednetials.teamId);
+                            tester = new EspnTester(connector);
                             break;
                         default:
                             Console.WriteLine($"{selection} is not valid. Please try again.");
@@ -79,6 +83,20 @@ namespace FantasyFootballDashboard.ConsoleRunner
             var inputUsername = Console.ReadLine();
 
             return (league: inputLeague, username: inputUsername);
+        }
+
+        private static (string year, string leagueId, string teamId) GetEspnCredentials()
+        {
+            Console.WriteLine("Enter League Year: ");
+            var inputYear = Console.ReadLine();
+
+            Console.WriteLine("Enter ESPN League ID: ");
+            var inputLeagueId = Console.ReadLine();
+
+            Console.WriteLine("Enter ESPN Team ID: ");
+            var inputTeamId = Console.ReadLine();
+
+            return (year: inputYear, leagueId: inputLeagueId, teamId: inputTeamId);
         }
 
         private static (string year, string username, string password) GetMflCrednetials()

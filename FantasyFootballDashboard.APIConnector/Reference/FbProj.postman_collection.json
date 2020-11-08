@@ -13,7 +13,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "Put Token Here",
+							"value": "{{CBS_Token}}",
 							"type": "string"
 						}
 					]
@@ -60,7 +60,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api.cbssports.com/general/oauth/test/access_token?user_id=&league_id=bailiff&sport=football&response_format=json",
+					"raw": "https://api.cbssports.com/general/oauth/test/access_token?user_id={{CBS_Username}}&league_id={{CBS_League_Name}}&sport=football&response_format=json",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -76,11 +76,11 @@
 					"query": [
 						{
 							"key": "user_id",
-							"value": "email here"
+							"value": "{{CBS_Username}}"
 						},
 						{
 							"key": "league_id",
-							"value": "bailiff"
+							"value": "{{CBS_League_Name}}"
 						},
 						{
 							"key": "sport",
@@ -103,7 +103,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "Put Token Here",
+							"value": "{{CBS_Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{CBS_Token}}",
 							"type": "string"
 						}
 					]
@@ -132,6 +137,85 @@
 						{
 							"key": "response_format",
 							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESPN Get Teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2020/segments/0/leagues/707745509?view=mPlayer",
+					"protocol": "http",
+					"host": [
+						"fantasy",
+						"espn",
+						"com"
+					],
+					"path": [
+						"apis",
+						"v3",
+						"games",
+						"ffl",
+						"seasons",
+						"2020",
+						"segments",
+						"0",
+						"leagues",
+						"707745509"
+					],
+					"query": [
+						{
+							"key": "forTeamId",
+							"value": "{{ESPN_Team_ID}}",
+							"disabled": true
+						},
+						{
+							"key": "view",
+							"value": "mPlayer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESPN Get Players",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://fantasy.espn.com/apis/v3/games/ffl/seasons/2020/segments/0/leagues/{{ESPN_League_ID}}?view=mRoster&forTeamId={{ESPN_Team_ID}}",
+					"protocol": "http",
+					"host": [
+						"fantasy",
+						"espn",
+						"com"
+					],
+					"path": [
+						"apis",
+						"v3",
+						"games",
+						"ffl",
+						"seasons",
+						"2020",
+						"segments",
+						"0",
+						"leagues",
+						"{{ESPN_League_ID}}"
+					],
+					"query": [
+						{
+							"key": "view",
+							"value": "mRoster"
+						},
+						{
+							"key": "forTeamId",
+							"value": "{{ESPN_Team_ID}}"
 						}
 					]
 				}
