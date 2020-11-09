@@ -7,24 +7,17 @@ using System.Collections.Generic;
 
 namespace FantasyFootballDashboard.Service
 {
-    public class ConnectionGenerator
+    public static class ConnectionGenerator
     {
-        private readonly UserProfile _userProfile;
-
-        public ConnectionGenerator(UserProfile userProfile)
-        {
-            _userProfile = userProfile;
-        }
-
-        public List<IConnector> GenerateConnectionsFromUserProfile()
+        public static List<IConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile)
         {
             var connectors = new List<IConnector>();
 
-            if(!string.IsNullOrEmpty(_userProfile.CbsUsername) && !string.IsNullOrEmpty(_userProfile.CbsLeagueName))
+            if(!string.IsNullOrEmpty(userProfile.CbsUsername) && !string.IsNullOrEmpty(userProfile.CbsLeagueName))
             {
                 try
                 {
-                    var cbsConnector = new CbsConnector(_userProfile.CbsLeagueName, _userProfile.CbsUsername);
+                    var cbsConnector = new CbsConnector(userProfile.CbsLeagueName, userProfile.CbsUsername);
                     connectors.Add(cbsConnector);
                 }
                 catch
@@ -33,11 +26,11 @@ namespace FantasyFootballDashboard.Service
                 }
             }
 
-            if (!string.IsNullOrEmpty(_userProfile.EspnTeamId) && !string.IsNullOrEmpty(_userProfile.EspnLeagueId))
+            if (!string.IsNullOrEmpty(userProfile.EspnTeamId) && !string.IsNullOrEmpty(userProfile.EspnLeagueId))
             {
                 try
                 {
-                    var espnConnector = new EspnConnector(_userProfile.Year, _userProfile.EspnLeagueId, _userProfile.EspnTeamId);
+                    var espnConnector = new EspnConnector(userProfile.Year, userProfile.EspnLeagueId, userProfile.EspnTeamId);
                     connectors.Add(espnConnector);
                 }
                 catch
@@ -46,11 +39,11 @@ namespace FantasyFootballDashboard.Service
                 }
             }
 
-            if (!string.IsNullOrEmpty(_userProfile.MflUsername) && !string.IsNullOrEmpty(_userProfile.MflPassword))
+            if (!string.IsNullOrEmpty(userProfile.MflUsername) && !string.IsNullOrEmpty(userProfile.MflPassword))
             {
                 try
                 {
-                    var mflConnector = new MflConnector(_userProfile.Year, _userProfile.MflUsername, _userProfile.MflPassword);
+                    var mflConnector = new MflConnector(userProfile.Year, userProfile.MflUsername, userProfile.MflPassword);
                     connectors.Add(mflConnector);
                 }
                 catch

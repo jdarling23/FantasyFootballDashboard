@@ -14,10 +14,11 @@ namespace FantasyFootballDashboard.Service
             _connectors = connectors;
         }
 
-        public List<Player> GetAllUserPlayers()
+        public IEnumerable<Player> GetAllUserPlayers()
         {
             var players = new List<Player>();
 
+            // Need to come back and make these connectors async going forward
             foreach(IConnector conn in _connectors)
             {
                 players.AddRange(conn.GetActivePlayersForUser());

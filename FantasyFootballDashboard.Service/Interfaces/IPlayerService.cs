@@ -5,6 +5,6 @@ namespace FantasyFootballDashboard.Service.Interfaces
 {
     public interface IPlayerService
     {
-        public List<Player> GetAllUserPlayers();
+        public IEnumerable<Player> GetAllUserPlayers();
     }
 }

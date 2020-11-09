@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballDashboard.Service", "FantasyFootballDashboard.Service\FantasyFootballDashboard.Service.csproj", "{543534FF-41C8-4337-B0AC-EA0D1269FE4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatnasyFootballDashboard.API", "FatnasyFootballDashboard.API\FatnasyFootballDashboard.API.csproj", "{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x64.Build.0 = Release|Any CPU
 		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x86.ActiveCfg = Release|Any CPU
 		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x86.Build.0 = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|x64.Build.0 = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
