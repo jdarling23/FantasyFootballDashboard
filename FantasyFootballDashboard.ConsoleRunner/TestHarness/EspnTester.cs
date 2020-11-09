@@ -1,5 +1,6 @@
 ﻿using FantasyFootballDashboard.APIConnector.Interfaces;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
@@ -12,9 +13,9 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
             _espnConnector = espnConnector;
         }
 
-        public string ExecuteTest()
+        public async Task<string> ExecuteTest()
         {
-            var result = _espnConnector.GetActivePlayersForUser();
+            var result = await _espnConnector.GetActivePlayersForUser();
 
             var namesList = result
                 .Select(p => p.Name);

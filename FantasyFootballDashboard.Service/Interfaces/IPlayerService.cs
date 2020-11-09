@@ -1,10 +1,11 @@
 ﻿using FantasyFootballDashboard.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.Service.Interfaces
 {
     public interface IPlayerService
     {
-        public IEnumerable<Player> GetAllUserPlayers();
+        Task<IEnumerable<Player>> GetAllUserPlayers();
     }
 }

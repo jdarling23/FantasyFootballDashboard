@@ -8,6 +8,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.APIConnector.MFL
 {
@@ -32,13 +33,13 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             _leagues = GetUserLeagues();
         }
 
-        public List<Player> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayersForUser()
         {
-            var playerClient = new RestClient();
             var playersToReturn = new List<Player>();
 
             foreach(var league in _leagues)
             {
+                var playerClient = new RestClient();
                 playerClient.BaseUrl = new Uri(league.Url);
                 var request = new RestRequest($"{_year}/export");
                 request.AddParameter("TYPE", "rosters", ParameterType.QueryString);
@@ -51,7 +52,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
                     request.AddCookie(cookie.Key, cookie.Value);
                 }
 
-                var response = playerClient.Get(request);
+                var response = await playerClient.ExecuteAsync(request, Method.GET);
 
                 var parsedLeaguePayload = JsonConvert.DeserializeObject<MflRosterRequestPaylod>(response.Content);
 
@@ -65,7 +66,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
                         .Select(p => p.PlayerId)
                         .ToList();
 
-                var detailedMflPlayers = LookupMflPlayersById(playerIds, playerClient);
+                var detailedMflPlayers = await LookupMflPlayersById(playerIds, playerClient);
 
                 var mapper = new MflPlayerMapper();
                 var mappedPlayers = detailedMflPlayers
@@ -135,7 +136,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             return parsedCookies;
         }
 
-        private List<MflPlayer> LookupMflPlayersById(List<string> playerIds, RestClient client)
+        private async Task<List<MflPlayer>> LookupMflPlayersById(List<string> playerIds, RestClient client)
         {
             var request = new RestRequest($"{_year}/export");
             request.AddParameter("TYPE", "players", ParameterType.QueryString);
@@ -148,7 +149,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
                 request.AddCookie(cookie.Key, cookie.Value);
             }
 
-            var response = client.Get(request);
+            var response = await client.ExecuteAsync(request, Method.GET);
 
             var parsedPlayerPayload = JsonConvert.DeserializeObject<MflPlayerRequestPayload>(response.Content);
 

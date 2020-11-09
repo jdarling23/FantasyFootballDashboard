@@ -1,15 +1,17 @@
+using System.Threading.Tasks;
+
 namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
     public interface ITester
     {
-        string ExecuteTest();
+        Task<string> ExecuteTest();
     }
 
     public class DefaultTester : ITester
     {
-        public string ExecuteTest()
+        public Task<string> ExecuteTest()
         {
-            return "What is my purpose? You pass butter. Oh my god.";
+            return Task.FromResult("What is my purpose? You pass butter. Oh my god.");
         }
     }
 }

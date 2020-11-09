@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using FantasyFootballDashboard.APIConnector.CBS.Models;
 using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
@@ -35,7 +37,7 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 		/// Gets the players currently playing for a user. Their team is identified using the logged in CBS token
 		/// </summary>
 		/// <returns>List of players</returns>
-		public List<Player> GetActivePlayersForUser()
+		public async Task<List<Player>> GetActivePlayersForUser()
 		{
 			var request = new RestRequest("fantasy/league/scoring/live");
 			request.AddParameter("version", "3.0", ParameterType.QueryString);
@@ -43,7 +45,7 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 
 			_client.AddDefaultHeader("Authorization", $"Bearer {_token.Body.AccessToken}");
 
-			var response = _client.Get(request);
+			var response = await _client.ExecuteAsync(request, Method.GET);
 
 			var parsedResponse = JsonConvert.DeserializeObject<CbsScoringPayload>(response.Content);
 

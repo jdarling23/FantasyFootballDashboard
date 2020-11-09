@@ -62,7 +62,7 @@ namespace FantasyFootballDashboard.ConsoleRunner
 
             try
             {
-                var testResult = tester.ExecuteTest();
+                var testResult = tester.ExecuteTest().GetAwaiter().GetResult();
                 Console.WriteLine(testResult);
             }
             catch (Exception ex)
