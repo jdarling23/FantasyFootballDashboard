@@ -1,7 +1,8 @@
-﻿using FantasyFootballDashboard.APIConnector.MFL.Models;
+﻿using FantasyFootballDashboard.APIConnector.Interfaces;
+using FantasyFootballDashboard.APIConnector.MFL.Models;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Models.Exceptions;
-using FantasyFootballDashboard.Models.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -105,6 +106,11 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             return parsedLeaguePayload.LeagueContainer.Leagues;
         }
 
+        public ServiceOptions GetServiceOption()
+        {
+            return ServiceOptions.Mfl;
+        }
+
         private Dictionary<string, string> GetMflCookies(string username, string password)
         {
             var request = new RestRequest("login");
@@ -153,5 +159,6 @@ namespace FantasyFootballDashboard.APIConnector.MFL
 
             return parsedPlayerPayload?.PlayersContainer?.Players;
         }
+
     }
 }

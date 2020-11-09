@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FantasyFootballDashboard.APIConnector\FantasyFootballDashboard.APIConnector.csproj" />
+    <ProjectReference Include="..\FantasyFootballDashboard.Models\FantasyFootballDashboard.Models.csproj" />
+  </ItemGroup>
+
+</Project>

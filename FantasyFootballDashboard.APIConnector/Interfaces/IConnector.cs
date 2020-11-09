@@ -1,6 +1,8 @@
+using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using System.Collections.Generic;
 
-namespace FantasyFootballDashboard.Models.Interface
+namespace FantasyFootballDashboard.APIConnector.Interfaces
 {
     /// <summary>
     /// Interface for an API connection
@@ -12,6 +14,12 @@ namespace FantasyFootballDashboard.Models.Interface
 		/// </summary>
 		/// <returns>List of players</returns>
 		List<Player> GetActivePlayersForUser();
+
+        /// <summary>
+        /// Identifies an IConnector by service option
+        /// </summary>
+        /// <returns></returns>
+        ServiceOptions GetServiceOption();
 	}
 
     public class DefaultConnector : IConnector
@@ -19,6 +27,11 @@ namespace FantasyFootballDashboard.Models.Interface
         public List<Player> GetActivePlayersForUser()
         {
             return new List<Player>();
+        }
+
+        public ServiceOptions GetServiceOption()
+        {
+            return ServiceOptions.Default;
         }
     }
 }

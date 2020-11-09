@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.ConsoleRunner", "FantasyFootballDashboard.ConsoleRunner\FantasyFootballDashboard.ConsoleRunner.csproj", "{AB7C3252-24F8-4D96-822D-6716DD190090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballDashboard.Models", "FantasyFootballDashboard.Models\FantasyFootballDashboard.Models.csproj", "{F35AFD3E-480F-4E01-83A5-74F72DF5BAAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.Models", "FantasyFootballDashboard.Models\FantasyFootballDashboard.Models.csproj", "{F35AFD3E-480F-4E01-83A5-74F72DF5BAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballDashboard.Service", "FantasyFootballDashboard.Service\FantasyFootballDashboard.Service.csproj", "{543534FF-41C8-4337-B0AC-EA0D1269FE4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,18 @@ Global
 		{F35AFD3E-480F-4E01-83A5-74F72DF5BAAD}.Release|x64.Build.0 = Release|Any CPU
 		{F35AFD3E-480F-4E01-83A5-74F72DF5BAAD}.Release|x86.ActiveCfg = Release|Any CPU
 		{F35AFD3E-480F-4E01-83A5-74F72DF5BAAD}.Release|x86.Build.0 = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|x64.Build.0 = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Debug|x86.Build.0 = Debug|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x64.ActiveCfg = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x64.Build.0 = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x86.ActiveCfg = Release|Any CPU
+		{543534FF-41C8-4337-B0AC-EA0D1269FE4E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

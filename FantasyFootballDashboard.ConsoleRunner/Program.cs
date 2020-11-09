@@ -1,8 +1,8 @@
-﻿using FantasyFootballDashboard.APIConnector.CBS;
+﻿using FantasyFootballDashboard.APIConnector;
+using FantasyFootballDashboard.APIConnector.CBS;
 using FantasyFootballDashboard.APIConnector.ESPN;
 using FantasyFootballDashboard.APIConnector.MFL;
 using FantasyFootballDashboard.ConsoleRunner.TestHarness;
-using FantasyFootballDashboard.Models.Interface;
 using System;
 
 namespace FantasyFootballDashboard.ConsoleRunner

@@ -1,7 +1,8 @@
 ﻿using FantasyFootballDashboard.APIConnector.ESPN.Models;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Models.Exceptions;
-using FantasyFootballDashboard.Models.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -58,6 +59,11 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
                 .ToList();
 
             return mappedPlayers;
+        }
+
+        public ServiceOptions GetServiceOption()
+        {
+            return ServiceOptions.Espn;
         }
     }
 }

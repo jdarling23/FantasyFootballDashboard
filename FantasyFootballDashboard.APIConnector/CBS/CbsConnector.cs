@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FantasyFootballDashboard.APIConnector.CBS.Models;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Models.Exceptions;
-using FantasyFootballDashboard.Models.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -67,12 +69,17 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 			return mappedPlayers.ToList();
 		}
 
-		/// <summary>
-		/// Gets an access token to connect to the CBS Sports API
-		/// </summary>
-		/// <param name="userName">CBS Sports username (email)</param>
-		/// <returns>Access token to CBS Sports API</returns>
-		private CbsToken GetToken(string userName)
+        public ServiceOptions GetServiceOption()
+        {
+			return ServiceOptions.Cbs;
+        }
+
+        /// <summary>
+        /// Gets an access token to connect to the CBS Sports API
+        /// </summary>
+        /// <param name="userName">CBS Sports username (email)</param>
+        /// <returns>Access token to CBS Sports API</returns>
+        private CbsToken GetToken(string userName)
 		{
 			var request = new RestRequest("general/oauth/test/access_token");
 			request.AddParameter("user_id", userName, ParameterType.QueryString);
@@ -80,11 +87,18 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 			request.AddParameter("sport", "football", ParameterType.QueryString);
 			request.AddParameter("response_format", "json", ParameterType.QueryString);
 
-			var response = _client.Get(request);
+            try
+            {
+                var response = _client.Get(request);
 
-			var parsedResponse = JsonConvert.DeserializeObject<CbsToken>(response.Content);
+                var parsedResponse = JsonConvert.DeserializeObject<CbsToken>(response.Content);
 
-			return parsedResponse;
+                return parsedResponse;
+            }
+            catch (Exception ex)
+            {
+				throw new ServiceLoginException($"Could not generate token for CBS: {ex.Message}");
+            }
 		}
 	}
 }
