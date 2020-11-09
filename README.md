@@ -6,6 +6,25 @@ This application will give the ability to see all of your fantasy football playe
 
 The goal is to hook-up the API in this repo to a front-end project so that you can see how all of your players are doing on gameday.
 
+## Dashboard API Requests
+As of November 9, 2020, you can run a GET request against the API project running locally to retrieve a list of players from the listed services. Use the URL
+
+```https://localhost:{portNumber}/api/player/GetPlayers```
+
+with the request body 
+```
+{
+    "CbsUserName": "{{CBS_Username}}",
+    "CbsLeagueName": "{{CBS_League_Name}}",
+    "EspnLeagueId": "{{ESPN_League_ID}}",
+    "EspnTeamId": "{{ESPN_Team_ID}}",
+    "MflUsername": "{{MFL_Username}}",
+    "MflPassword": "{{MFL_Password}}"
+} 
+```
+
+You do not need to populate every field, but if you do not populate a field, you will not be able to access the service.
+
 ## Test Harness Console Application
 While we are working on developing the REST API, we've created a .NET Core console application so you can see how the connections work. As of November 8, 2020, you can use this console app to list out your players from CBS and My Fantasy League, as well as players from public leagues in ESPN. 
 
