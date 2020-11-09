@@ -1,8 +1,8 @@
 ﻿using FantasyFootballDashboard.APIConnector.CBS;
 using FantasyFootballDashboard.APIConnector.ESPN;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.APIConnector.MFL;
 using FantasyFootballDashboard.ConsoleRunner.TestHarness;
-using FantasyFootballDashboard.Models.Interface;
 using System;
 
 namespace FantasyFootballDashboard.ConsoleRunner
@@ -62,7 +62,7 @@ namespace FantasyFootballDashboard.ConsoleRunner
 
             try
             {
-                var testResult = tester.ExecuteTest();
+                var testResult = tester.ExecuteTest().GetAwaiter().GetResult();
                 Console.WriteLine(testResult);
             }
             catch (Exception ex)

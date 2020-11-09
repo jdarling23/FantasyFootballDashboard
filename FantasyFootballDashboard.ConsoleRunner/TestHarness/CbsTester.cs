@@ -1,5 +1,6 @@
-using FantasyFootballDashboard.Models.Interface;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
@@ -12,9 +13,9 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
             _cbsConnector = cbsConnector;
         }
 
-        public string ExecuteTest()
+        public async Task<string> ExecuteTest()
         {
-            var result = _cbsConnector.GetActivePlayersForUser();
+            var result = await _cbsConnector.GetActivePlayersForUser();
 
             var playerNames = new StringBuilder();
             playerNames.Append("Players from CBS: ");

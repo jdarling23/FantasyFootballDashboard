@@ -221,6 +221,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Dashbard Get Players",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CbsUserName\": \"{{CBS_Username}}\",\r\n    \"CbsLeagueName\": \"{{CBS_League_Name}}\",\r\n    \"EspnLeagueId\": \"{{ESPN_League_ID}}\",\r\n    \"EspnTeamId\": \"{{ESPN_Team_ID}}\",\r\n    \"MflUsername\": \"{{MFL_Username}}\",\r\n    \"MflPassword\": \"{{MFL_Password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44316/api/player/GetPlayers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44316",
+					"path": [
+						"api",
+						"player",
+						"GetPlayers"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -1,12 +1,14 @@
 ﻿using FantasyFootballDashboard.APIConnector.ESPN.Models;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Models.Exceptions;
-using FantasyFootballDashboard.Models.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.APIConnector.ESPN
 {
@@ -22,13 +24,13 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
             _teamId = teamId;
         }
 
-        public List<Player> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayersForUser()
         {
             var request = new RestRequest();
             request.AddParameter("view", "mRoster", ParameterType.QueryString);
             request.AddParameter("forTeamId", _teamId, ParameterType.QueryString);
 
-            var response = _client.Get(request);
+            var response = await _client.ExecuteAsync(request, Method.GET);
             var parsedResponse = new EspnRosterRequestPayload();
 
             try
@@ -58,6 +60,11 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
                 .ToList();
 
             return mappedPlayers;
+        }
+
+        public ServiceOptions GetServiceOption()
+        {
+            return ServiceOptions.Espn;
         }
     }
 }

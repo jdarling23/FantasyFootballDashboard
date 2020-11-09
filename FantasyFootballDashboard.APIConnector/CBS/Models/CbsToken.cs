@@ -1,9 +1,8 @@
-using FantasyFootballDashboard.APIConnector.Models;
 using Newtonsoft.Json;
 
 namespace FantasyFootballDashboard.APIConnector.CBS.Models
 {
-	public class CbsToken: AccessToken
+	public class CbsToken
 	{
 		[JsonProperty("statusCode")]
 		public int StatusCode { get; set; }
