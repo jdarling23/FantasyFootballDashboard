@@ -29,4 +29,7 @@ You do not need to populate every field, but if you do not populate a field, you
 While we are working on developing the REST API, we've created a .NET Core console application so you can see how the connections work. As of November 8, 2020, you can use this console app to list out your players from CBS and My Fantasy League, as well as players from public leagues in ESPN. 
 
 ## Accessing Players from ESPN Leagues
-Currently, this application only supports public leagues. In order access the players, you will need to pull your league ID and team ID from the ESPN URL for your team's home page. The ESPN API does not allow for a programatic lookup of these values at this time.  
+Currently, this application only supports public leagues. In order access the players, you will need to pull your league ID and team ID from the ESPN URL for your team's home page. The ESPN API does not allow for a programatic lookup of these values at this time.
+
+## Integration Tests
+Integration tests are included in the slution, however they are marked as ignored until we can configure a secure pipeline for the test variables. You can run them locally, however, by removing the Ignore attribute in the test and updating the test JSON file or configuring your user secrets (see this link for how to configure user secrets in .NET Core https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows)
