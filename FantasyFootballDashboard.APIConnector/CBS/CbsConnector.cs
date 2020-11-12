@@ -84,7 +84,7 @@ namespace FantasyFootballDashboard.APIConnector.CBS
         private CbsToken GetToken(string userName)
 		{
 			var request = new RestRequest("general/oauth/test/access_token");
-			request.AddParameter("user_id", userName, ParameterType.QueryString);
+			request.AddParameter("user_id", userName, ParameterType.QueryStringWithoutEncode);
 			request.AddParameter("league_id", _leagueName, ParameterType.QueryString);
 			request.AddParameter("sport", "football", ParameterType.QueryString);
 			request.AddParameter("response_format", "json", ParameterType.QueryString);
