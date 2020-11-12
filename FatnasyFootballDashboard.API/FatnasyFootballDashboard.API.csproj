@@ -9,5 +9,4 @@
     <ProjectReference Include="..\FantasyFootballDashboard.Service\FantasyFootballDashboard.Service.csproj" />
   </ItemGroup>
 
-
 </Project>
