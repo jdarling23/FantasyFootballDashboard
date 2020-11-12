@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Service;
+using FatnasyFootballDashboard.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatnasyFootballDashboard.API.Controllers
@@ -10,17 +11,27 @@ namespace FatnasyFootballDashboard.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-
+        /// <summary>
+        /// Returns a list of players from all services using the provided credentials
+        /// </summary>
+        /// <param name="userProfile">Object containing the credentials for each service.
+        /// For CBS, provide CbsUserName and CbsLeagueName.
+        /// For ESPN, provide EspnLeagueId and EspnTeamId.
+        /// For MyFantasyLeague, provide MflUsername and MflPassword.
+        /// </param>
+        /// <returns>List of players from across all services.</returns>
         [HttpGet]
         [Route("GetPlayers")]
-        public async Task<IEnumerable<Player>> GetPlayers([FromBody]UserProfile userProfile)
+        public async Task<PlayerPayload> GetPlayers([FromBody]UserProfile userProfile)
         {
             var connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile);
 
             var playerService = new PlayerService(connectors);
             var players = await playerService.GetAllUserPlayers();
 
-            return players;
+            var payload = new PlayerPayload(players.ToList());
+
+            return payload;
         }
     }
 }
