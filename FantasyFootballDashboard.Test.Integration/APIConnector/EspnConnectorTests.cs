@@ -17,7 +17,7 @@ namespace FantasyFootballDashboard.Test.Integration.APIConnector
             _testProfile = ConfigurationHelper.GetTestProfile();
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public async Task GetActivePlayersForUser_GetsPlayers()
         {
             // Arrange

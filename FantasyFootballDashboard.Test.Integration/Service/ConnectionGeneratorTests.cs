@@ -19,7 +19,7 @@ namespace FantasyFootballDashboard.Test.Integration.Service
             _testProfile = ConfigurationHelper.GetTestProfile();
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void GenerateConnectionsFromUserProfile()
         {
             // Arrange
