@@ -1,7 +1,7 @@
-using FantasyFootballDashboard.Service;
-using FantasyFootballDashboard.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Identity.Web;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +20,9 @@ namespace FatnasyFootballDashboard.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+
             services.AddControllers();
         }
 
@@ -34,10 +37,8 @@ namespace FatnasyFootballDashboard.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            // Will add this back in before release; will integrate with Azure AD B2C
-            //app.UseAuthorization();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

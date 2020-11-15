@@ -223,11 +223,71 @@
 			"response": []
 		},
 		{
-			"name": "Dashbard Get Players",
+			"name": "Dashboard Get Players",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "{{Azure_ID_Client_Scope}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{AzureAD_Client_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/v2.0/authorize",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/v2.0/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{callback}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "AzureADToken",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -250,6 +310,13 @@
 						"api",
 						"player",
 						"GetPlayers"
+					],
+					"query": [
+						{
+							"key": "access_Token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtnMkxZczJUMENUaklmajRydDZKSXluZW4zOCIsImtpZCI6ImtnMkxZczJUMENUaklmajRydDZKSXluZW4zOCJ9.eyJhdWQiOiJhcGk6Ly9lYTA4NzNjNC1jZTYxLTRiMzktYTc3Yi00NWM5MmNiNzU4ZDYiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC83MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDcvIiwiaWF0IjoxNjA1NDU0Mzk1LCJuYmYiOjE2MDU0NTQzOTUsImV4cCI6MTYwNTQ1ODI5NSwiYWNyIjoiMSIsImFpbyI6IkFVUUF1LzhSQUFBQUJLK2FGdGlhUlVHQ09VSEdHTktCR2pDSFhWUjBFYUdWNmpBSHVycUhZZFNQWk13TWZnS3M0Tkw3MHBzTGhVeGF5dytNNmxQWkh4M2lOVERuK1lpTHZBPT0iLCJhbXIiOlsicnNhIiwibWZhIl0sImFwcGlkIjoiZWEwODczYzQtY2U2MS00YjM5LWE3N2ItNDVjOTJjYjc1OGQ2IiwiYXBwaWRhY3IiOiIwIiwiZGV2aWNlaWQiOiIwMjc3YTM4OC00YTIxLTQ5YzktOTNjMy1mMTA3NGM0OGFjMzciLCJmYW1pbHlfbmFtZSI6IkRhcmxpbmciLCJnaXZlbl9uYW1lIjoiSmFtZXMiLCJpcGFkZHIiOiI3Mi4xOTAuNzMuNDEiLCJuYW1lIjoiSmFtZXMgRGFybGluZyIsIm9pZCI6IjhhNGZmZGI3LTcwNjYtNDNlNi05N2E4LTcwNjI5ZmZhZGY1YiIsIm9ucHJlbV9zaWQiOiJTLTEtNS0yMS0xMjQ1MjUwOTUtNzA4MjU5NjM3LTE1NDMxMTkwMjEtMjAwOTkxMCIsInJoIjoiMC5BUm9BdjRqNWN2R0dyMEdScXkxODBCSGJSOFJ6Q09waHpqbExwM3RGeVN5M1dOWWFBR0UuIiwic2NwIjoicmVhZCIsInN1YiI6IkRKMDlULTVZLUxabW9hbkFwR19TaERLdmxJeFA1b2RkUXp0bXNDRDNQQW8iLCJ0aWQiOiI3MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDciLCJ1bmlxdWVfbmFtZSI6ImphbWVzZGFybGluZ0BtaWNyb3NvZnQuY29tIiwidXBuIjoiamFtZXNkYXJsaW5nQG1pY3Jvc29mdC5jb20iLCJ1dGkiOiJLZWo2ejEwcTEwR2stWWp1YWJRX0FBIiwidmVyIjoiMS4wIn0.luJIPiw-pzJZGwuS4mUt_aHFfNmiZaGGEnVfG3Ep0vpPqgvArKYfHl8uIpfNsP3CtfurBGhG3nEAQ5DjlzZMl45V-MejRrCqZJa8q6HRf4enDtpoS1pwkc6h4MSTsNCzbOW6gslxpG25s7JrywU1meI-jHRxHeKTEfy2uNQ2i7hiAPT6WHHDrcL3sxYbYOYvG0DY1Sw9kSjZmFlXFREecwVrbmekEsSlW4CYfC6a-UZHDCw7dIDYnUs2L-7fvym1X6iIQtZJ_0iHtyFJS6osF8eZeuCLraHDSZMEWfQC94biY2NspAnSuE0WBBJ2Ttf6dc5QlH-JzQBJVqh-1GuC3g",
+							"disabled": true
+						}
 					]
 				}
 			},

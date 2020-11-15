@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Service;
 using FatnasyFootballDashboard.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatnasyFootballDashboard.API.Controllers
@@ -21,6 +22,7 @@ namespace FatnasyFootballDashboard.API.Controllers
         /// </param>
         /// <returns>List of players from across all services.</returns>
         [HttpGet]
+        [Authorize]
         [Route("GetPlayers")]
         public async Task<PlayerPayload> GetPlayers([FromBody]UserProfile userProfile)
         {
