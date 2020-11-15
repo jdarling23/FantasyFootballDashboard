@@ -223,11 +223,71 @@
 			"response": []
 		},
 		{
-			"name": "Dashbard Get Players",
+			"name": "Dashboard Get Players",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/{{AzureAD_Tenant_ID}}/oauth2/v2.0/authorize",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "{{Azure_ID_Client_Scope}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{AzureAD_Client_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{callback}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "AzureADToken",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -250,6 +310,13 @@
 						"api",
 						"player",
 						"GetPlayers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
 					]
 				}
 			},
