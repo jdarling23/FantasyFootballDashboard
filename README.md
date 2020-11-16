@@ -36,3 +36,7 @@ Integration tests are included in the solution, however they are marked as ignor
 
 ## Running the API Locally
 The API leverages Azure Active Directory (Azure AD) for authentication. Even when running locally, you will need to secure an access token via the OAuth 2.0 protocol. You will need to create your own app registration in Azure AD. The authorization tab in the example player get request in the Postman collection demonstrates how to get a token once the app registration in Azure AD is setup. See this documentation for more details on using Azure AD for authentication (https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api).
+
+## Swagger API Documentation
+The API project has Swagger built in. The Swagger docs should allow you to view all available endpoints. They also allow you to make test requests to the API (you will need to provide a bearer token, ensuring that you also append the word "Bearer" before the token in the given input). The docs should load on startup, but if they do no, they can be found at following web address:
+```https://localhost:{portNumber}/index.html```
