@@ -223,10 +223,7 @@
 			"response": []
 		},
 		{
-			"name": "Dashboard Get Players",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Dashboard Players",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -288,7 +285,7 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",

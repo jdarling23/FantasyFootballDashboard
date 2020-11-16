@@ -4,6 +4,7 @@ using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Service;
 using FatnasyFootballDashboard.API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatnasyFootballDashboard.API.Controllers
@@ -21,10 +22,13 @@ namespace FatnasyFootballDashboard.API.Controllers
         /// For MyFantasyLeague, provide MflUsername and MflPassword.
         /// </param>
         /// <returns>List of players from across all services.</returns>
-        [HttpGet]
+        [HttpPost]
+        [ProducesResponseType(typeof(PlayerPayload), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [Authorize]
-        [Route("GetPlayers")]
-        public async Task<PlayerPayload> GetPlayers([FromBody]UserProfile userProfile)
+        [Route("Players")]
+        public async Task<PlayerPayload> ReturnPlayers([FromBody]UserProfile userProfile)
         {
             var connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile);
 
