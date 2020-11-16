@@ -33,3 +33,6 @@ Currently, this application only supports public leagues. In order access the pl
 
 ## Integration Tests
 Integration tests are included in the solution, however they are marked as ignored until we can configure a secure pipeline for the test variables. You can run them locally by removing the Ignore attribute in the test and updating the test JSON file or configuring your user secrets (see this link for how to configure user secrets in .NET Core https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows)
+
+## Running the API Locally
+The API leverages Azure Active Directory (Azure AD) for authentication. Even when running locally, you will need to secure an access token via the OAuth 2.0 protocol. You will need to create your own app registration in Azure AD. The authorization tab in the example player get request in the Postman collection demonstrates how to get a token once the app registration in Azure AD is setup. See this documentation for more details on using Azure AD for authentication (https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api).
