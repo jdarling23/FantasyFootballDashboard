@@ -10,6 +10,9 @@ using System;
 
 namespace FatnasyFootballDashboard.API
 {
+    /// <summary>
+    /// Initializes needed services on startup of the app
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -19,7 +22,10 @@ namespace FatnasyFootballDashboard.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary> 
+        /// <param name="app">Service container, provided by runtime</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -67,7 +73,11 @@ namespace FatnasyFootballDashboard.API
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">Application builder, provided by runtime</param>
+        /// <param name="env">Environment settings, provided by runtime</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

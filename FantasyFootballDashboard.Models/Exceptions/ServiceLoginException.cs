@@ -2,6 +2,9 @@
 
 namespace FantasyFootballDashboard.Models.Exceptions
 {
+    /// <summary>
+    /// Exception denoting that a connection could not be made to a given Fantasy Footbal service
+    /// </summary>
     public class ServiceLoginException : Exception
     {
         public ServiceLoginException()

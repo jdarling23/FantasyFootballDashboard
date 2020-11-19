@@ -3,6 +3,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace FatnasyFootballDashboard.API
 {
+    /// <summary>
+    /// Main entrance to API application
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
