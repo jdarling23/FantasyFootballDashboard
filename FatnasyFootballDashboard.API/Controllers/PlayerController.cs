@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Service;
 using FatnasyFootballDashboard.API.Models;
@@ -28,16 +30,37 @@ namespace FatnasyFootballDashboard.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [Authorize]
         [Route("Players")]
-        public async Task<PlayerPayload> ReturnPlayers([FromBody]UserProfile userProfile)
+        public async Task<IActionResult> ReturnPlayers([FromBody]UserProfile userProfile)
         {
-            var connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile);
+            if (userProfile == null)
+            {
+                return BadRequest("Provided User Profile object was null");
+            }
 
-            var playerService = new PlayerService(connectors);
-            var players = await playerService.GetAllUserPlayers();
+            var connectors = new List<IConnector>();
 
-            var payload = new PlayerPayload(players.ToList());
+            try
+            {
+                connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile);
+            }
+            catch
+            {
+                return StatusCode(500, "There was an error generating a connection to the desired Fantasy Football services.");
+            }
 
-            return payload;
+            try
+            {
+                var playerService = new PlayerService(connectors);
+                var players = await playerService.GetAllUserPlayers();
+
+                var payload = new PlayerPayload(players.ToList());
+
+                return Ok(payload);
+            }
+            catch
+            {
+                return StatusCode(500, "There was an issue getting the players from the requested Fantasy Football services.");
+            }
         }
     }
 }

@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.APIConnector.ESPN
 {
+    /// <summary>
+    /// Connects to ESPN Fantasy Sports API to interact with their data
+    /// </summary>
     public class EspnConnector : IConnector
     {
         private readonly RestClient _client;
@@ -24,6 +27,10 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
             _teamId = teamId;
         }
 
+        /// <summary>
+		/// Gets the players currently playing for a user. Their team is identified using the provided ESPN team ID
+		/// </summary>
+		/// <returns>List of players</returns>
         public async Task<List<Player>> GetActivePlayersForUser()
         {
             var request = new RestRequest();
@@ -62,6 +69,10 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
             return mappedPlayers;
         }
 
+        /// <summary>
+        /// Returns enum for this connector
+        /// </summary>
+        /// <returns>ESPN Service Option</returns>
         public ServiceOptions GetServiceOption()
         {
             return ServiceOptions.Espn;

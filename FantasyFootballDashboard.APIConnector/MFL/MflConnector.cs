@@ -33,6 +33,10 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             _leagues = GetUserLeagues();
         }
 
+        /// <summary>
+		/// Gets the players currently playing for a user. Pulls players from all teams associated with this account in MFL.
+		/// </summary>
+		/// <returns>List of players</returns>
         public async Task<List<Player>> GetActivePlayersForUser()
         {
             var playersToReturn = new List<Player>();
@@ -83,30 +87,10 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             return playersToReturn;
         }
 
-        private List<MflLeague> GetUserLeagues()
-        {
-            var request = new RestRequest("export");
-            request.AddParameter("TYPE", "myleagues", ParameterType.QueryString);
-            request.AddParameter("YEAR", _year, ParameterType.QueryString);
-            request.AddParameter("JSON", "1", ParameterType.QueryString);
-
-            foreach(var cookie in _cookies)
-            {
-                request.AddCookie(cookie.Key, cookie.Value);
-            }
-
-            var response = _client.Get(request);
-
-            var parsedLeaguePayload = JsonConvert.DeserializeObject<MflLeagueRequestPayload>(response.Content);
-
-            if(parsedLeaguePayload?.LeagueContainer?.Leagues == null)
-            {
-                throw new ServiceLoginException("Could not identify leagues for user in My Fantasy League");
-            }
-
-            return parsedLeaguePayload.LeagueContainer.Leagues;
-        }
-
+        /// <summary>
+        /// Returns enum for this connector
+        /// </summary>
+        /// <returns>My Fantasy League Service Option</returns>
         public ServiceOptions GetServiceOption()
         {
             return ServiceOptions.Mfl;
@@ -134,6 +118,30 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             }
 
             return parsedCookies;
+        }
+
+        private List<MflLeague> GetUserLeagues()
+        {
+            var request = new RestRequest("export");
+            request.AddParameter("TYPE", "myleagues", ParameterType.QueryString);
+            request.AddParameter("YEAR", _year, ParameterType.QueryString);
+            request.AddParameter("JSON", "1", ParameterType.QueryString);
+
+            foreach (var cookie in _cookies)
+            {
+                request.AddCookie(cookie.Key, cookie.Value);
+            }
+
+            var response = _client.Get(request);
+
+            var parsedLeaguePayload = JsonConvert.DeserializeObject<MflLeagueRequestPayload>(response.Content);
+
+            if (parsedLeaguePayload?.LeagueContainer?.Leagues == null)
+            {
+                throw new ServiceLoginException("Could not identify leagues for user in My Fantasy League");
+            }
+
+            return parsedLeaguePayload.LeagueContainer.Leagues;
         }
 
         private async Task<List<MflPlayer>> LookupMflPlayersById(List<string> playerIds, RestClient client)

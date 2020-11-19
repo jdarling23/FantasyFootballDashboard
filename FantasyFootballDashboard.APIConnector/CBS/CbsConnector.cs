@@ -71,16 +71,15 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 			return mappedPlayers.ToList();
 		}
 
-        public ServiceOptions GetServiceOption()
+		/// <summary>
+		/// Returns enum for this connector
+		/// </summary>
+		/// <returns>CBS Service Option</returns>
+		public ServiceOptions GetServiceOption()
         {
 			return ServiceOptions.Cbs;
         }
 
-        /// <summary>
-        /// Gets an access token to connect to the CBS Sports API
-        /// </summary>
-        /// <param name="userName">CBS Sports username (email)</param>
-        /// <returns>Access token to CBS Sports API</returns>
         private CbsToken GetToken(string userName)
 		{
 			var request = new RestRequest("general/oauth/test/access_token");

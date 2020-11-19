@@ -7,8 +7,16 @@ using System.Collections.Generic;
 
 namespace FantasyFootballDashboard.Service
 {
+    /// <summary>
+    /// Helper class to connecto to desired Fantasu Football Services
+    /// </summary>
     public static class ConnectionGenerator
     {
+        /// <summary>
+        /// Creates connections to desired Fantasy Fotball service using provided user credentials
+        /// </summary>
+        /// <param name="userProfile">Object containing user credentials for Fantasy Football services</param>
+        /// <returns>List of connection objects</returns>
         public static List<IConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile)
         {
             var connectors = new List<IConnector>();
