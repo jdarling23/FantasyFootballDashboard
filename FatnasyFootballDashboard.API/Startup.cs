@@ -31,9 +31,10 @@ namespace FatnasyFootballDashboard.API
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
-            services.AddControllers();
-
+            services.AddLogging();
             services.AddApplicationInsightsTelemetry();
+
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {

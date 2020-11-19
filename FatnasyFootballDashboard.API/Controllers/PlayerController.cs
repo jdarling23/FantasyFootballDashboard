@@ -17,9 +17,9 @@ namespace FatnasyFootballDashboard.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<PlayerController> _logger;
 
-        public PlayerController(ILogger logger)
+        public PlayerController(ILogger<PlayerController> logger)
         {
             _logger = logger;
         }
