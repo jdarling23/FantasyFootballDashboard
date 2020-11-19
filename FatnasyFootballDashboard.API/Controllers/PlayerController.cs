@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FantasyFootballDashboard.APIConnector.Interfaces;
@@ -8,6 +9,7 @@ using FatnasyFootballDashboard.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace FatnasyFootballDashboard.API.Controllers
 {
@@ -15,6 +17,13 @@ namespace FatnasyFootballDashboard.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
+        private readonly ILogger _logger;
+
+        public PlayerController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         /// <summary>
         /// Returns a list of players from all services using the provided credentials
         /// </summary>
@@ -41,10 +50,11 @@ namespace FatnasyFootballDashboard.API.Controllers
 
             try
             {
-                connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile);
+                connectors = ConnectionGenerator.GenerateConnectionsFromUserProfile(userProfile, _logger);
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Error connecting to services; HTTP request returned 500: {ex.Message}");
                 return StatusCode(500, "There was an error generating a connection to the desired Fantasy Football services.");
             }
 
@@ -57,8 +67,9 @@ namespace FatnasyFootballDashboard.API.Controllers
 
                 return Ok(payload);
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError($"Error getting players; HTTP Request returned 500: {ex.Message}");
                 return StatusCode(500, "There was an issue getting the players from the requested Fantasy Football services.");
             }
         }
