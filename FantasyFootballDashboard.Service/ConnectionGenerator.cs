@@ -3,6 +3,8 @@ using FantasyFootballDashboard.APIConnector.ESPN;
 using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.APIConnector.MFL;
 using FantasyFootballDashboard.Models;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace FantasyFootballDashboard.Service
@@ -17,7 +19,7 @@ namespace FantasyFootballDashboard.Service
         /// </summary>
         /// <param name="userProfile">Object containing user credentials for Fantasy Football services</param>
         /// <returns>List of connection objects</returns>
-        public static List<IConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile)
+        public static List<IConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile, ILogger logger = null)
         {
             var connectors = new List<IConnector>();
 
@@ -28,9 +30,12 @@ namespace FantasyFootballDashboard.Service
                     var cbsConnector = new CbsConnector(userProfile.CbsLeagueName, userProfile.CbsUsername);
                     connectors.Add(cbsConnector);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    // Hook this up to logging once we start doing that. 
+                    if (logger != null)
+                    {
+                        logger.LogError($"Error connectiong to CBS: {ex.Message}");
+                    }
                 }
             }
 
@@ -41,9 +46,12 @@ namespace FantasyFootballDashboard.Service
                     var espnConnector = new EspnConnector(userProfile.Year, userProfile.EspnLeagueId, userProfile.EspnTeamId);
                     connectors.Add(espnConnector);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    // Hook this up to logging once we start doing that. 
+                    if (logger != null)
+                    {
+                        logger.LogError($"Error connectiong to ESPN: {ex.Message}");
+                    }
                 }
             }
 
@@ -54,9 +62,12 @@ namespace FantasyFootballDashboard.Service
                     var mflConnector = new MflConnector(userProfile.Year, userProfile.MflUsername, userProfile.MflPassword);
                     connectors.Add(mflConnector);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    // Hook this up to logging once we start doing that. 
+                    if (logger != null)
+                    {
+                        logger.LogError($"Error connectiong to My Fantasy League: {ex.Message}");
+                    }
                 }
             }
 

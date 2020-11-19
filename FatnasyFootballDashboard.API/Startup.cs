@@ -33,6 +33,8 @@ namespace FatnasyFootballDashboard.API
 
             services.AddControllers();
 
+            services.AddApplicationInsightsTelemetry();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1.0", new OpenApiInfo
