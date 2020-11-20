@@ -1,4 +1,6 @@
-﻿using FantasyFootballDashboard.APIConnector.Interfaces;
+﻿using FantasyFootbalDashboard.DBConnector.Interfaces;
+using FantasyFootbalDashboard.DBConnector.Models;
+using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Service;
@@ -19,55 +21,68 @@ namespace FantasyFootballDashboard.Test.Unit.Service
             // Arrange
             var connectorOne = new Mock<IConnector>();
             var connectorTwo = new Mock<IConnector>();
+            var refPlayerRepo = new Mock<IReferencePlayerRepository>();
+
+            var refPlayerTwo = new ReferencePlayer()
+            {
+                Name = "Michael Gallup",
+                Position = (int)Position.WideReceiver,
+                Team = (int)NflTeam.DallasCowboys,
+            };
 
             var playerOne = new Player()
             {
                 Name = "Dak Prescott",
                 Team = NflTeam.DallasCowboys,
                 Position = Position.QuarterBack,
-                Service = new List<ServiceOption> { ServiceOption.CBS }
+                Service = new List<ServiceOption> { ServiceOption.MyFantasyLeague }
             };
 
             var playerTwo = new Player()
             {
                 Name = "Michael Gallup",
-                Team = NflTeam.DallasCowboys,
-                Position = Position.WideReceiver,
-                Service = new List<ServiceOption> { ServiceOption.ESPN }
-            };
-
-            var playerThree = new Player()
-            {
-                Name = "Marion Barber",
-                Team = NflTeam.DallasCowboys,
-                Position = Position.RunningBack,
-                Service = new List<ServiceOption> { ServiceOption.ESPN }
+                Position = Position.None,
+                Team = NflTeam.FreeAgent,
+                Service = new List<ServiceOption> { ServiceOption.ESPN },
+                ServiceIDs = new Dictionary<ServiceOption, int>() { { ServiceOption.ESPN, 12345 } }
             };
 
             connectorOne.Setup(c => c.GetActivePlayersForUser())
                 .ReturnsAsync(new List<Player>() { playerOne });
 
             connectorTwo.Setup(c => c.GetActivePlayersForUser())
-                .ReturnsAsync(new List<Player>() { playerTwo, playerThree });
+                .ReturnsAsync(new List<Player>() { playerTwo });
 
-            var playerService = new PlayerService
-                (new List<IConnector>() { connectorOne.Object, connectorTwo.Object });
+            refPlayerRepo.Setup(r => r.GetReferencePlayer(It.IsAny<Player>()))
+                .Returns(refPlayerTwo);
+
+            refPlayerRepo.Setup(r => r.SavePlayer(It.IsAny<ReferencePlayer>()))
+                .Verifiable();
+
+            var playerService = new PlayerService(
+                new List<IConnector>() { connectorOne.Object, connectorTwo.Object },
+                refPlayerRepo.Object
+            );
 
             // Act
             var result = (await playerService.GetAllUserPlayers())
                 .ToList();
 
             // Assert
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(2, result.Count);
             Assert.IsTrue(result
                 .Select(p => p.Name)
                 .Contains("Dak Prescott"));
             Assert.IsTrue(result
                 .Select(p => p.Name)
                 .Contains("Michael Gallup"));
-            Assert.IsTrue(result
-                .Select(p => p.Name)
-                .Contains("Marion Barber"));
+
+            var playerTwoTest = result
+                .Where(p => p.Name.Equals("Michael Gallup"))
+                .First();
+
+            Assert.AreEqual(NflTeam.DallasCowboys, playerTwoTest.Team);
+            Assert.AreEqual(Position.WideReceiver, playerTwoTest.Position);
         }
     }
 }

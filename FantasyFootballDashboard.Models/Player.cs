@@ -1,4 +1,5 @@
 using FantasyFootballDashboard.Models.Enums;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace FantasyFootballDashboard.Models
@@ -27,5 +28,11 @@ namespace FantasyFootballDashboard.Models
 		/// A list of the fantasy football services where you own this player
 		/// </summary>
 		public List<ServiceOption> Service { get; set; } = new List<ServiceOption>();
+
+		/// <summary>
+		/// Map what ID a player is across Fantasy Football services
+		/// </summary>
+		[JsonIgnore]
+		public Dictionary<ServiceOption, int> ServiceIDs { get; set; }
     }
 }

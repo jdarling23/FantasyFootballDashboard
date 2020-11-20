@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FatnasyFootballDashboard.API", "FatnasyFootballDashboard.API\FatnasyFootballDashboard.API.csproj", "{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballDashboard.Test.Unit", "FantasyFootballDashboard.Test.Unit\FantasyFootballDashboard.Test.Unit.csproj", "{943C2204-71DF-4D52-B843-D370D0BDB462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.Test.Unit", "FantasyFootballDashboard.Test.Unit\FantasyFootballDashboard.Test.Unit.csproj", "{943C2204-71DF-4D52-B843-D370D0BDB462}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{BE47F2DD-0555-4316-968E-6ABBC61C1069}"
 EndProject
@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2921F80C-8F54-479F-977C-640BAB426A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballDashboard.Test.Integration", "FantasyFootballDashboard.Test.Integration\FantasyFootballDashboard.Test.Integration.csproj", "{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballDashboard.Test.Integration", "FantasyFootballDashboard.Test.Integration\FantasyFootballDashboard.Test.Integration.csproj", "{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootbalDashboard.DBConnector", "FantasyFootbalDashboard.DBConnector\FantasyFootbalDashboard.DBConnector.csproj", "{6F1B920A-B249-485D-8E2F-0524E256824C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,18 @@ Global
 		{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB}.Release|x64.Build.0 = Release|Any CPU
 		{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB}.Release|x86.ActiveCfg = Release|Any CPU
 		{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB}.Release|x86.Build.0 = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|x64.Build.0 = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F1B920A-B249-485D-8E2F-0524E256824C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +145,7 @@ Global
 		{EFCC50C4-274C-4DD8-A439-3B69CBB8C6EC} = {AB8B0F88-DD31-4A06-A5A0-86BBFBCF4F82}
 		{943C2204-71DF-4D52-B843-D370D0BDB462} = {BE47F2DD-0555-4316-968E-6ABBC61C1069}
 		{75FD42AF-4C0D-4698-AA21-61AFA0CF7DEB} = {BE47F2DD-0555-4316-968E-6ABBC61C1069}
+		{6F1B920A-B249-485D-8E2F-0524E256824C} = {2B4947DD-A5F0-4CD7-AE4A-9F9427290C50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D8FC539-C199-4E88-8563-8C76836F4962}
