@@ -8,6 +8,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Text.Json.Serialization;
+using FantasyFootballDashboard.Service.Interfaces;
+using FantasyFootballDashboard.Service;
+using Microsoft.EntityFrameworkCore;
+using FantasyFootbalDashboard.DBConnector;
+using FantasyFootbalDashboard.DBConnector.Interfaces;
+using FantasyFootbalDashboard.DBConnector.Repositories;
 
 namespace FatnasyFootballDashboard.API
 {
@@ -29,17 +35,21 @@ namespace FatnasyFootballDashboard.API
         /// <param name="app">Service container, provided by runtime</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Security Configuration
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
+            // Logging Configuration
             services.AddLogging();
             services.AddApplicationInsightsTelemetry();
 
+            // API Configuration
             services.AddControllers().AddJsonOptions(op =>
             {
                 op.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
+            // Swagger Configuration
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1.0", new OpenApiInfo
@@ -78,6 +88,14 @@ namespace FatnasyFootballDashboard.API
                     }
                 });
             });
+
+            // Dependency Injection
+            services.AddDbContext<FantasyFootballDashboardContext>(c => 
+            {
+                c.UseSqlServer(Configuration["DatabaseConnectionString"]);
+            });
+            services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<IReferencePlayerRepository, ReferencePlayerRepository>();
         }
 
         /// <summary>

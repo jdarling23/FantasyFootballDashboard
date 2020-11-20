@@ -8,16 +8,13 @@ namespace FantasyFootbalDashboard.DBConnector
     /// </summary>
     public class FantasyFootballDashboardContext : DbContext
     {
-        private string _connectionString;
 
         public DbSet<ReferencePlayer> ReferencePlayers { get; set; }
 
-        public FantasyFootballDashboardContext(string connectionString)
+        public FantasyFootballDashboardContext(DbContextOptions<FantasyFootballDashboardContext> options)
+        : base(options)
         {
-            _connectionString = connectionString;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer(_connectionString);
     }
 }

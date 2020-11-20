@@ -40,14 +40,15 @@ namespace FantasyFootbalDashboard.DBConnector.Repositories
         public ReferencePlayer GetReferencePlayer(Player player)
         {
             var result = _dbContext.ReferencePlayers
-                .Where(rp => rp.Name.Equals(player.Name));
+                .Where(rp => rp.Name.Equals(player.Name))
+                .FirstOrDefault();
 
             if (result == null)
             {
-                GetPlayerByServiceId(player.ServiceIDs);
+                result = GetPlayerByServiceId(player.ServiceIDs);
             }
 
-            return result.FirstOrDefault();
+            return result;
         }
 
         /// <summary>
@@ -67,12 +68,12 @@ namespace FantasyFootbalDashboard.DBConnector.Repositories
                         result = _dbContext.ReferencePlayers
                             .Where(rp => rp.EspnPlayerId == serviceId.Value)
                             .FirstOrDefault();
-                        break;
+                        return result;
                     case (ServiceOption.MyFantasyLeague):
                         result = _dbContext.ReferencePlayers
                             .Where(rp => rp.MyFantasyLeagePlayerId == serviceId.Value)
                             .FirstOrDefault();
-                        break;
+                        return result;
                     default:
                         break;
                 }

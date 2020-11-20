@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FantasyFootbalDashboard.DBConnector.Models
 {
@@ -8,6 +9,7 @@ namespace FantasyFootbalDashboard.DBConnector.Models
     /// </summary>
     public class ReferencePlayer
     {
+        [Key]
         public Guid ReferencePlayerId { get; set; }
 
         public string Name { get; set; }

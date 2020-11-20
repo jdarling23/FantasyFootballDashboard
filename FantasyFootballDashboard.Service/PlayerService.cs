@@ -13,7 +13,7 @@ namespace FantasyFootballDashboard.Service
     /// </summary>
     public class PlayerService : IPlayerService
     {
-        private readonly IEnumerable<IConnector> _connectors;
+        private List<IConnector> _connectors;
         private readonly IReferencePlayerRepository _refPlayerRepo;
 
         /// <summary>
@@ -21,10 +21,30 @@ namespace FantasyFootballDashboard.Service
         /// </summary>
         /// <param name="connectors">Collection of connector objects to desired Fantasy Football services</param>
         /// <param name="refPlayerRepo">Reference player repository to assist filling in missing details for a player</param>
-        public PlayerService(IEnumerable<IConnector> connectors, IReferencePlayerRepository refPlayerRepo)
+        public PlayerService(List<IConnector> connectors, IReferencePlayerRepository refPlayerRepo)
         {
             _connectors = connectors;
             _refPlayerRepo = refPlayerRepo;
+        }
+
+        /// <summary>
+        /// Generate service without desired connections to Fantasy Football services
+        /// </summary>
+        /// <param name="connectors">Collection of connector objects to desired Fantasy Football services</param>
+        /// <param name="refPlayerRepo">Reference player repository to assist filling in missing details for a player</param>
+        public PlayerService(IReferencePlayerRepository refPlayerRepo)
+        {
+            _refPlayerRepo = refPlayerRepo;
+            _connectors = new List<IConnector>();
+        }
+
+        /// <summary>
+        /// Allows you to add additional connectors to the service
+        /// </summary>
+        /// <param name="connToAdd">Connection to add</param>
+        public void AddConnector(IConnector connToAdd)
+        {
+            _connectors.Add(connToAdd);
         }
 
         /// <summary>

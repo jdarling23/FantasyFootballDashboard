@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Service;
+using FantasyFootballDashboard.Service.Interfaces;
 using FatnasyFootballDashboard.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,10 +18,15 @@ namespace FatnasyFootballDashboard.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
+        private readonly IPlayerService _playerService;
         private readonly ILogger<PlayerController> _logger;
 
-        public PlayerController(ILogger<PlayerController> logger)
+        public PlayerController(
+            IPlayerService playerService,
+            ILogger<PlayerController> logger
+        )
         {
+            _playerService = playerService;
             _logger = logger;
         }
 
@@ -37,7 +43,7 @@ namespace FatnasyFootballDashboard.API.Controllers
         [ProducesResponseType(typeof(PlayerPayload), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        //[Authorize]
+        [Authorize]
         [Route("Players")]
         public async Task<IActionResult> ReturnPlayers([FromBody]UserProfile userProfile)
         {
@@ -60,8 +66,8 @@ namespace FatnasyFootballDashboard.API.Controllers
 
             try
             {
-                var playerService = new PlayerService(connectors);
-                var players = await playerService.GetAllUserPlayers();
+                connectors.ForEach(c => _playerService.AddConnector(c));
+                var players = await _playerService.GetAllUserPlayers();
 
                 var payload = new PlayerPayload(players.ToList());
 
