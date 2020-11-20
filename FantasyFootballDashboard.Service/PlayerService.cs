@@ -83,6 +83,11 @@ namespace FantasyFootballDashboard.Service
             // Get the additional data
             var refPlayer = _refPlayerRepo.GetReferencePlayer(player);
 
+            if (refPlayer == null)
+            {
+                return player;
+            }
+
             // Update the player to return
             player.Position = (Position)refPlayer.Position;
             player.Team = (NflTeam)refPlayer.Team;

@@ -1,6 +1,6 @@
 using FantasyFootballDashboard.Models.Enums;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace FantasyFootballDashboard.Models
 {
@@ -33,6 +33,6 @@ namespace FantasyFootballDashboard.Models
 		/// Map what ID a player is across Fantasy Football services
 		/// </summary>
 		[JsonIgnore]
-		public Dictionary<ServiceOption, int> ServiceIDs { get; set; }
+		public Dictionary<ServiceOption, int> ServiceIDs { get; set; } = new Dictionary<ServiceOption, int>();
     }
 }

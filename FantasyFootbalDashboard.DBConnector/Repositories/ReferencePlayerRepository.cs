@@ -43,7 +43,7 @@ namespace FantasyFootbalDashboard.DBConnector.Repositories
                 .Where(rp => rp.Name.Equals(player.Name))
                 .FirstOrDefault();
 
-            if (result == null)
+            if (result == null && player.ServiceIDs != null)
             {
                 result = GetPlayerByServiceId(player.ServiceIDs);
             }
