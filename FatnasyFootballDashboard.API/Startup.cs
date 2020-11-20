@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text.Json.Serialization;
 
 namespace FatnasyFootballDashboard.API
 {
@@ -34,7 +35,10 @@ namespace FatnasyFootballDashboard.API
             services.AddLogging();
             services.AddApplicationInsightsTelemetry();
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(op =>
+            {
+                op.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
             services.AddSwaggerGen(c =>
             {

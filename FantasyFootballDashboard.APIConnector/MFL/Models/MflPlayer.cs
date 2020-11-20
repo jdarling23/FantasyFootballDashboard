@@ -22,6 +22,9 @@ namespace FantasyFootballDashboard.APIConnector.MFL.Models
                 " " + 
                 value.Substring(0, value.IndexOf(","))).Trim();
         }
+
+        [JsonProperty("team")]
+        public string NflTeam { get; set; }
     }
 
     public class MflPlayerRequestPayload

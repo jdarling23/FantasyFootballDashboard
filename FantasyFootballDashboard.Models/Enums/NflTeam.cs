@@ -1,0 +1,39 @@
+﻿namespace FantasyFootballDashboard.Models.Enums
+{
+    public enum NflTeam
+    {
+        FreeAgent,
+        ArizonaCardinals,
+        AtlantaFalcons,
+        BalitmoreRavens,
+        BuffaloBills,
+        CarolinaPanthers,
+        ChicagoBears,
+        CincinnatiBengals,
+        ClevelandBrowns,
+        DallasCowboys,
+        DenverBroncos,
+        DetroitLions,
+        GreenBayPackers,
+        HoustonTexans,
+        IndianapolisColts,
+        JacksonvilleJaguars,
+        KansasCityCheifs,
+        LasVegasRaiders,
+        LosAngelesChargers,
+        LosAngelesRams,
+        MiamiDolphins,
+        MinnesotaVikings,
+        NewEnglandPatriots,
+        NewOrleansSaints,
+        NewYorkGiants,
+        NewYorkJets,
+        PhilidelphiaEagles,
+        PittsburghSteelers,
+        SanFrancisco49ers,
+        SeattleSeahawks,
+        TampaBayBuccaneers,
+        TenneseeTitans,
+        WashingtonFootballTeam
+    }
+}
