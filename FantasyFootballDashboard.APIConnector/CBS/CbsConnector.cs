@@ -75,9 +75,9 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 		/// Returns enum for this connector
 		/// </summary>
 		/// <returns>CBS Service Option</returns>
-		public ServiceOptions GetServiceOption()
+		public ServiceOption GetServiceOption()
         {
-			return ServiceOptions.Cbs;
+			return ServiceOption.CBS;
         }
 
         private CbsToken GetToken(string userName)

@@ -21,6 +21,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             mappedPlayer.Name = player.FullName;
             mappedPlayer.Position = MapPosition(player.Position);
             mappedPlayer.Team = MapTeam(player.NflTeam);
+            mappedPlayer.Service.Add(ServiceOption.MyFantasyLeague);
 
             return mappedPlayer;
         }

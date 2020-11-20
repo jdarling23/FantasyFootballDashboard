@@ -1,4 +1,5 @@
 using FantasyFootballDashboard.Models.Enums;
+using System.Collections.Generic;
 
 namespace FantasyFootballDashboard.Models
 {
@@ -22,5 +23,9 @@ namespace FantasyFootballDashboard.Models
 		/// </summary>
         public NflTeam Team { get; set; }
 
+		/// <summary>
+		/// A list of the fantasy football services where you own this player
+		/// </summary>
+		public List<ServiceOption> Service { get; set; } = new List<ServiceOption>();
     }
 }

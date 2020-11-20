@@ -20,7 +20,7 @@ namespace FantasyFootballDashboard.APIConnector.Interfaces
         /// Identifies an IConnector by service option
         /// </summary>
         /// <returns></returns>
-        ServiceOptions GetServiceOption();
+        ServiceOption GetServiceOption();
 	}
 
     public class DefaultConnector : IConnector
@@ -30,9 +30,9 @@ namespace FantasyFootballDashboard.APIConnector.Interfaces
             return Task.FromResult(new List<Player>());
         }
 
-        public ServiceOptions GetServiceOption()
+        public ServiceOption GetServiceOption()
         {
-            return ServiceOptions.Default;
+            return ServiceOption.Default;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -22,16 +23,25 @@ namespace FantasyFootballDashboard.Test.Unit.Service
             var playerOne = new Player()
             {
                 Name = "Dak Prescott",
+                Team = NflTeam.DallasCowboys,
+                Position = Position.QuarterBack,
+                Service = new List<ServiceOption> { ServiceOption.CBS }
             };
 
             var playerTwo = new Player()
             {
                 Name = "Michael Gallup",
+                Team = NflTeam.DallasCowboys,
+                Position = Position.WideReceiver,
+                Service = new List<ServiceOption> { ServiceOption.ESPN }
             };
 
             var playerThree = new Player()
             {
                 Name = "Marion Barber",
+                Team = NflTeam.DallasCowboys,
+                Position = Position.RunningBack,
+                Service = new List<ServiceOption> { ServiceOption.ESPN }
             };
 
             connectorOne.Setup(c => c.GetActivePlayersForUser())

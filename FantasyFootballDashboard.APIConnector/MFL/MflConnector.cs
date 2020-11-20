@@ -91,9 +91,9 @@ namespace FantasyFootballDashboard.APIConnector.MFL
         /// Returns enum for this connector
         /// </summary>
         /// <returns>My Fantasy League Service Option</returns>
-        public ServiceOptions GetServiceOption()
+        public ServiceOption GetServiceOption()
         {
-            return ServiceOptions.Mfl;
+            return ServiceOption.MyFantasyLeague;
         }
 
         private Dictionary<string, string> GetMflCookies(string username, string password)

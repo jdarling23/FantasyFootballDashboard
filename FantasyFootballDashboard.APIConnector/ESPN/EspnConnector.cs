@@ -73,9 +73,9 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
         /// Returns enum for this connector
         /// </summary>
         /// <returns>ESPN Service Option</returns>
-        public ServiceOptions GetServiceOption()
+        public ServiceOption GetServiceOption()
         {
-            return ServiceOptions.Espn;
+            return ServiceOption.ESPN;
         }
     }
 }
