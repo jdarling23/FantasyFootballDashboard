@@ -31,7 +31,7 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
 		/// Gets the players currently playing for a user. Their team is identified using the provided ESPN team ID
 		/// </summary>
 		/// <returns>List of players</returns>
-        public async Task<List<Player>> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayers()
         {
             var request = new RestRequest();
             request.AddParameter("view", "mRoster", ParameterType.QueryString);

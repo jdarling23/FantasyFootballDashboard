@@ -15,7 +15,7 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 
         public async Task<string> ExecuteTest()
         {
-            var result = await _espnConnector.GetActivePlayersForUser();
+            var result = await _espnConnector.GetActivePlayers();
 
             var namesList = result
                 .Select(p => p.Name);

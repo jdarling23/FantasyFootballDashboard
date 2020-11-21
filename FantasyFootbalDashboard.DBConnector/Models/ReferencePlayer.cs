@@ -26,6 +26,18 @@ namespace FantasyFootbalDashboard.DBConnector.Models
 
         public int? MyFantasyLeagePlayerId { get; set; }
 
+        public string Status { get; set; }
+
+        public int JerseyNumber { get; set; } = 0;
+
+        public int YearsInLeague { get; set; }
+
+        public double AverageDraftPosition { get; set; } = 0;
+
+        public int ByeWeek { get; set; } = 0;
+
+        public string College { get; set; }
+
         public bool Active { get; set; } = true;
     }
 }

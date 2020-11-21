@@ -70,10 +70,10 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 ServiceIDs = new Dictionary<ServiceOption, int>() { { ServiceOption.ESPN, 12345 } }
             };
 
-            connectorOne.Setup(c => c.GetActivePlayersForUser())
+            connectorOne.Setup(c => c.GetActivePlayers())
                 .ReturnsAsync(new List<Player>() { playerOne });
 
-            connectorTwo.Setup(c => c.GetActivePlayersForUser())
+            connectorTwo.Setup(c => c.GetActivePlayers())
                 .ReturnsAsync(new List<Player>() { playerTwo });
 
             refPlayerRepo.Setup(r => r.GetReferencePlayer(It.IsAny<Player>()))
@@ -144,10 +144,10 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 ServiceIDs = new Dictionary<ServiceOption, int>() { { ServiceOption.ESPN, 12345 } }
             };
 
-            connectorOne.Setup(c => c.GetActivePlayersForUser())
+            connectorOne.Setup(c => c.GetActivePlayers())
                 .ReturnsAsync(new List<Player>() { playerOne });
 
-            connectorTwo.Setup(c => c.GetActivePlayersForUser())
+            connectorTwo.Setup(c => c.GetActivePlayers())
                 .ReturnsAsync(new List<Player>() { playerTwo });
 
             var playerService = new PlayerService(

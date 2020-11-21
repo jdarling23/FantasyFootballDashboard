@@ -8,6 +8,7 @@
         Default,
         CBS,
         MyFantasyLeague,
-        ESPN
+        ESPN,
+        SportsData
     }
 }

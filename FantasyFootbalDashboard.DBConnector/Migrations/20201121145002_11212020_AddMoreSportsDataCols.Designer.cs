@@ -4,14 +4,16 @@ using FantasyFootbalDashboard.DBConnector;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FantasyFootbalDashboard.DBConnector.Migrations
 {
     [DbContext(typeof(FantasyFootballDashboardContext))]
-    partial class FantasyFootballDashboardContextModelSnapshot : ModelSnapshot
+    [Migration("20201121145002_11212020_AddMoreSportsDataCols")]
+    partial class _11212020_AddMoreSportsDataCols
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

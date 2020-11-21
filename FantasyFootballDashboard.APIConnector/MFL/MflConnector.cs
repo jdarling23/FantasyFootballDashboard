@@ -37,7 +37,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
 		/// Gets the players currently playing for a user. Pulls players from all teams associated with this account in MFL.
 		/// </summary>
 		/// <returns>List of players</returns>
-        public async Task<List<Player>> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayers()
         {
             var playersToReturn = new List<Player>();
 

@@ -15,7 +15,7 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 
         public async Task<string> ExecuteTest()
         {
-            var result = await _mflConnector.GetActivePlayersForUser();
+            var result = await _mflConnector.GetActivePlayers();
             var namesList = result
                 .Select(p => p.Name);
 

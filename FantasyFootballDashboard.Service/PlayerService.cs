@@ -57,7 +57,7 @@ namespace FantasyFootballDashboard.Service
 
             foreach(IConnector conn in _connectors)
             {
-                var playerResponse = await conn.GetActivePlayersForUser();
+                var playerResponse = await conn.GetActivePlayers();
 
                 foreach(var player in playerResponse)
                 {
