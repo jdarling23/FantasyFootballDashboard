@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using FantasyFootbalDashboard.DBConnector;
 using FantasyFootbalDashboard.DBConnector.Interfaces;
 using FantasyFootbalDashboard.DBConnector.Repositories;
+using FantasyFootballDashboard.APIConnector.SportsData;
 
 namespace FatnasyFootballDashboard.API
 {
@@ -94,8 +95,15 @@ namespace FatnasyFootballDashboard.API
             {
                 c.UseSqlServer(Configuration["DatabaseConnectionString"]);
             });
-            services.AddTransient<IPlayerService, PlayerService>();
+
             services.AddTransient<IReferencePlayerRepository, ReferencePlayerRepository>();
+
+            services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<IDataService, DataService>(s => 
+            {
+                var sportsDataConn = new SportsDataConnector(Configuration["SportsDataApiKey"]);
+                return new DataService(sportsDataConn, s.GetService<IReferencePlayerRepository>());
+            });
         }
 
         /// <summary>
