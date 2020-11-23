@@ -79,7 +79,7 @@ namespace FantasyFootballDashboard.Test.Unit.Service
             refPlayerRepo.Setup(r => r.GetReferencePlayer(It.IsAny<Player>()))
                 .Returns(refPlayerTwo);
 
-            refPlayerRepo.Setup(r => r.SavePlayer(It.IsAny<ReferencePlayer>()))
+            refPlayerRepo.Setup(r => r.SavePlayers(It.IsAny<List<ReferencePlayer>>()))
                 .Verifiable();
 
             var playerService = new PlayerService(

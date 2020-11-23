@@ -1,47 +1,47 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using FantasyFootballDashboard.APIConnector.Interfaces;
+using Newtonsoft.Json;
 
 namespace FantasyFootballDashboard.APIConnector.SportsData.Models
 {
     /// <summary>
     /// Object mapping in properties for playes form the SportsData.io API
     /// </summary>
-    public class SportsDataPlayer
+    public class SportsDataPlayer : ReferencePlayerBase
     {
         [JsonProperty("PlayerID")]
-        public int PlayerId { get; set; }
+        public override int PlayerId { get; set; }
 
         [JsonProperty("Name")]
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         [JsonProperty("Team")]
-        public string Team { get; set; }
+        public override string Team { get; set; }
 
         [JsonProperty("FantasyPosition")]
-        public string Position { get; set; }
+        public override string Position { get; set; }
 
         [JsonProperty("PositionCategory")]
-        public string PositionCategory { get; set; }
+        public override string PositionCategory { get; set; }
 
         [JsonProperty("PhotoUrl")]
-        public string Photorl { get; set; }
+        public override string PhotoUrl { get; set; }
 
         [JsonProperty("Status")]
-        public string Status { get; set; }
+        public override string Status { get; set; }
 
         [JsonProperty("Number")]
-        public int? JerseyNumber { get; set; } = 0;
+        public override int? JerseyNumber { get; set; } = 0;
 
         [JsonProperty("Experience")]
-        public int? YearsInLeague { get; set; } = 0;
+        public override int? YearsInLeague { get; set; } = 0;
 
         [JsonProperty("College")]
-        public string College { get; set; }
+        public override string College { get; set; }
 
         [JsonProperty("AverageDraftPosition")]
-        public double? AverageDraftPosition { get; set; } = 0;
+        public override double? AverageDraftPosition { get; set; } = 0;
 
         [JsonProperty("ByeWeek")]
-        public int? ByeWeek { get; set; } = 0;
+        public override int? ByeWeek { get; set; } = 0;
     }
 }

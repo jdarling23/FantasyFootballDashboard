@@ -88,6 +88,15 @@ namespace FantasyFootballDashboard.APIConnector.MFL
         }
 
         /// <summary>
+		/// CBS does not provide reference players
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Returns enum for this connector
         /// </summary>
         /// <returns>My Fantasy League Service Option</returns>

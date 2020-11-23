@@ -72,10 +72,19 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 		}
 
 		/// <summary>
-		/// Returns enum for this connector
+		/// CBS does not provide reference players
 		/// </summary>
-		/// <returns>CBS Service Option</returns>
-		public ServiceOption GetServiceOption()
+		/// <returns>NotImplementedException</returns>
+		public Task<List<ReferencePlayerBase>> GetReferencePlayers()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns enum for this connector
+        /// </summary>
+        /// <returns>CBS Service Option</returns>
+        public ServiceOption GetServiceOption()
         {
 			return ServiceOption.CBS;
         }

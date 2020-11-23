@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FantasyFootballDashboard.APIConnector.SportsData
@@ -36,10 +37,10 @@ namespace FantasyFootballDashboard.APIConnector.SportsData
         }
 
         /// <summary>
-        /// Returns all players frrom SportsData.io
+        /// Returns all reference players frrom SportsData.io
         /// </summary>
         /// <returns>List of SportsDataPlayers</returns>
-        public async Task<List<SportsDataPlayer>> GetRefPlayerData()
+        public async Task<List<ReferencePlayerBase>> GetReferencePlayers()
         {
             var request = new RestRequest("nfl/scores/json/Players");
             request.AddParameter("key", _apiKey, ParameterType.QueryString);
@@ -49,7 +50,9 @@ namespace FantasyFootballDashboard.APIConnector.SportsData
             try
             {
                 var parsedRepsonse = JsonConvert.DeserializeObject<List<SportsDataPlayer>>(response.Content);
-                return parsedRepsonse;
+                return parsedRepsonse
+                    .Select(pr => pr as ReferencePlayerBase)
+                    .ToList();
             }
             catch (Exception ex)
             {

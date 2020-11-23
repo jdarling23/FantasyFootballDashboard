@@ -20,6 +20,16 @@ namespace FantasyFootbalDashboard.DBConnector.Repositories
         }
 
         /// <summary>
+        /// Returns all reference players in the database
+        /// </summary>
+        /// <returns>List of reference player models</returns>
+        public List<ReferencePlayer> GetAllReferencePlayers()
+        {
+            return _dbContext.ReferencePlayers
+                .ToList();
+        }
+
+        /// <summary>
         /// Returns a player with a given ESPN Id
         /// </summary>
         /// <param name="espnId">ID of the player in ESPN</param>
@@ -83,12 +93,20 @@ namespace FantasyFootbalDashboard.DBConnector.Repositories
         }
 
         /// <summary>
-        /// Saves a Reference Player to the database
+        /// Saves Reference Players to the database
         /// </summary>
-        /// <param name="player">Reference palyer model</param>
-        public void SavePlayer(ReferencePlayer player)
+        /// <param name="players">List of Reference Player models</param>
+        public void SavePlayers(List<ReferencePlayer> players)
         {
-            _dbContext.ReferencePlayers.Update(player);
+            var newPlayers = players
+                .Where(p => p.ReferencePlayerId == null);
+
+            var existingPlayers = players
+                .Where(p => p.ReferencePlayerId != null);
+
+            _dbContext.ReferencePlayers.AddRange(newPlayers);
+            _dbContext.ReferencePlayers.UpdateRange(existingPlayers);
+
             _dbContext.SaveChanges();
         }
     }

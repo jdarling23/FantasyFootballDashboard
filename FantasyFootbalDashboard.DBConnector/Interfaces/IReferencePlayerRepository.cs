@@ -11,6 +11,12 @@ namespace FantasyFootbalDashboard.DBConnector.Interfaces
     public interface IReferencePlayerRepository
     {
         /// <summary>
+        /// Returns all reference players in the database
+        /// </summary>
+        /// <returns>List of reference player models</returns>
+        List<ReferencePlayer> GetAllReferencePlayers();
+
+        /// <summary>
         /// Returns a reference player associated to a system player model
         /// </summary>
         /// <param name="player">System player object</param>
@@ -25,9 +31,9 @@ namespace FantasyFootbalDashboard.DBConnector.Interfaces
         ReferencePlayer GetPlayerByServiceId(Dictionary<ServiceOption, int> serviceIds);
 
         /// <summary>
-        /// Saves a Reference Player to the database
+        /// Saves Reference Players to the database
         /// </summary>
-        /// <param name="player">Reference palyer model</param>
-        void SavePlayer(ReferencePlayer player);
+        /// <param name="players">List of Reference Player models</param>
+        void SavePlayers(List<ReferencePlayer> players);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FantasyFootbalDashboard.DBConnector.Interfaces;
+using FantasyFootbalDashboard.DBConnector.Models;
 using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Models.Enums;
@@ -99,11 +100,11 @@ namespace FantasyFootballDashboard.Service
                 {
                     case (ServiceOption.ESPN):
                         refPlayer.EspnPlayerId = service.Value;
-                        _refPlayerRepo.SavePlayer(refPlayer);
+                        _refPlayerRepo.SavePlayers(new List<ReferencePlayer> { refPlayer });
                         break;
                     case (ServiceOption.MyFantasyLeague):
                         refPlayer.MyFantasyLeagePlayerId = service.Value;
-                        _refPlayerRepo.SavePlayer(refPlayer);
+                        _refPlayerRepo.SavePlayers(new List<ReferencePlayer> { refPlayer });
                         break;
                     default:
                         break;

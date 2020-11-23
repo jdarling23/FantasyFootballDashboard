@@ -23,7 +23,7 @@ namespace FantasyFootballDashboard.Test.Integration.APIConnector
             var connector = new SportsDataConnector(_apiKey);
 
             // Act
-            var players = await connector.GetRefPlayerData();
+            var players = await connector.GetReferencePlayers();
 
             // Assert
             Assert.IsTrue(players.Any());
