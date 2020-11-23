@@ -43,7 +43,7 @@ namespace FatnasyFootballDashboard.API.Controllers
         [ProducesResponseType(typeof(PlayerPayload), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        //[Authorize]
+        [Authorize]
         [Route("Players")]
         public async Task<IActionResult> ReturnPlayers([FromBody]UserProfile userProfile)
         {
