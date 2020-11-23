@@ -25,5 +25,11 @@ namespace FantasyFootballDashboard.Test.Integration
 
             return configuration;
         }
+
+        public static string GetSportsDataApiKey()
+        {
+            var iConfig = GetIConfigurationRoot();
+            return iConfig["SportsDataKey"];
+        }
     }
 }

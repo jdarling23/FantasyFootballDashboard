@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FantasyFootbalDashboard.DBConnector\FantasyFootbalDashboard.DBConnector.csproj" />
     <ProjectReference Include="..\FantasyFootballDashboard.APIConnector\FantasyFootballDashboard.APIConnector.csproj" />
     <ProjectReference Include="..\FantasyFootballDashboard.Models\FantasyFootballDashboard.Models.csproj" />
   </ItemGroup>

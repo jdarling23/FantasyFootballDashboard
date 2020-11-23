@@ -37,7 +37,7 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 		/// Gets the players currently playing for a user. Their team is identified using the logged in CBS token
 		/// </summary>
 		/// <returns>List of players</returns>
-		public async Task<List<Player>> GetActivePlayersForUser()
+		public async Task<List<Player>> GetActivePlayers()
 		{
 			var request = new RestRequest("fantasy/league/scoring/live");
 			request.AddParameter("version", "3.0", ParameterType.QueryString);
@@ -72,12 +72,21 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 		}
 
 		/// <summary>
-		/// Returns enum for this connector
+		/// CBS does not provide reference players
 		/// </summary>
-		/// <returns>CBS Service Option</returns>
-		public ServiceOptions GetServiceOption()
+		/// <returns>NotImplementedException</returns>
+		public Task<List<ReferencePlayerBase>> GetReferencePlayers()
         {
-			return ServiceOptions.Cbs;
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns enum for this connector
+        /// </summary>
+        /// <returns>CBS Service Option</returns>
+        public ServiceOption GetServiceOption()
+        {
+			return ServiceOption.CBS;
         }
 
         private CbsToken GetToken(string userName)

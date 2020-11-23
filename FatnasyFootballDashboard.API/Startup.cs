@@ -7,6 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text.Json.Serialization;
+using FantasyFootballDashboard.Service.Interfaces;
+using FantasyFootballDashboard.Service;
+using Microsoft.EntityFrameworkCore;
+using FantasyFootbalDashboard.DBConnector;
+using FantasyFootbalDashboard.DBConnector.Interfaces;
+using FantasyFootbalDashboard.DBConnector.Repositories;
+using FantasyFootballDashboard.APIConnector.SportsData;
 
 namespace FatnasyFootballDashboard.API
 {
@@ -28,14 +36,21 @@ namespace FatnasyFootballDashboard.API
         /// <param name="app">Service container, provided by runtime</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Security Configuration
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
+            // Logging Configuration
             services.AddLogging();
             services.AddApplicationInsightsTelemetry();
 
-            services.AddControllers();
+            // API Configuration
+            services.AddControllers().AddJsonOptions(op =>
+            {
+                op.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
+            // Swagger Configuration
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1.0", new OpenApiInfo
@@ -73,6 +88,21 @@ namespace FatnasyFootballDashboard.API
                         new string[] { }
                     }
                 });
+            });
+
+            // Dependency Injection
+            services.AddDbContext<FantasyFootballDashboardContext>(c => 
+            {
+                c.UseSqlServer(Configuration["DatabaseConnectionString"]);
+            });
+
+            services.AddTransient<IReferencePlayerRepository, ReferencePlayerRepository>();
+
+            services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<IDataService, DataService>(s => 
+            {
+                var sportsDataConn = new SportsDataConnector(Configuration["SportsDataApiKey"]);
+                return new DataService(sportsDataConn, s.GetService<IReferencePlayerRepository>());
             });
         }
 

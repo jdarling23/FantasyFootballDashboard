@@ -19,13 +19,13 @@ namespace FantasyFootballDashboard.Test.Integration.APIConnector
 
         // CBS is on the fritz at this current time
         [TestMethod, Ignore]
-        public async Task GetActivePlayersForUser_GetsPlayers()
+        public async Task GetActivePlayers_GetsPlayers()
         {
             // Arrange
             var connector = new CbsConnector(_testProfile.CbsLeagueName, _testProfile.CbsUsername);
 
             // Act
-            var players = await connector.GetActivePlayersForUser();
+            var players = await connector.GetActivePlayers();
 
             // Assert
             Assert.IsTrue(players.Any());

@@ -15,7 +15,7 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 
         public async Task<string> ExecuteTest()
         {
-            var result = await _cbsConnector.GetActivePlayersForUser();
+            var result = await _cbsConnector.GetActivePlayers();
 
             var playerNames = new StringBuilder();
             playerNames.Append("Players from CBS: ");

@@ -31,7 +31,7 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
 		/// Gets the players currently playing for a user. Their team is identified using the provided ESPN team ID
 		/// </summary>
 		/// <returns>List of players</returns>
-        public async Task<List<Player>> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayers()
         {
             var request = new RestRequest();
             request.AddParameter("view", "mRoster", ParameterType.QueryString);
@@ -70,12 +70,21 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
         }
 
         /// <summary>
+		/// CBS does not provide reference players
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Returns enum for this connector
         /// </summary>
         /// <returns>ESPN Service Option</returns>
-        public ServiceOptions GetServiceOption()
+        public ServiceOption GetServiceOption()
         {
-            return ServiceOptions.Espn;
+            return ServiceOption.ESPN;
         }
     }
 }

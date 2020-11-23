@@ -37,7 +37,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
 		/// Gets the players currently playing for a user. Pulls players from all teams associated with this account in MFL.
 		/// </summary>
 		/// <returns>List of players</returns>
-        public async Task<List<Player>> GetActivePlayersForUser()
+        public async Task<List<Player>> GetActivePlayers()
         {
             var playersToReturn = new List<Player>();
 
@@ -88,12 +88,21 @@ namespace FantasyFootballDashboard.APIConnector.MFL
         }
 
         /// <summary>
+		/// CBS does not provide reference players
+		/// </summary>
+		/// <returns>NotImplementedException</returns>
+        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Returns enum for this connector
         /// </summary>
         /// <returns>My Fantasy League Service Option</returns>
-        public ServiceOptions GetServiceOption()
+        public ServiceOption GetServiceOption()
         {
-            return ServiceOptions.Mfl;
+            return ServiceOption.MyFantasyLeague;
         }
 
         private Dictionary<string, string> GetMflCookies(string username, string password)

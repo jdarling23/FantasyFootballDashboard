@@ -11,28 +11,39 @@ namespace FantasyFootballDashboard.APIConnector.Interfaces
     public interface IConnector
 	{
 		/// <summary>
-		/// Gets the players currently playing for a user
+		/// Gets the players currently playing for a user from a service
 		/// </summary>
 		/// <returns>List of players</returns>
-		Task<List<Player>> GetActivePlayersForUser();
+		Task<List<Player>> GetActivePlayers();
+
+        /// <summary>
+        /// Gets reference player data from a service
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ReferencePlayerBase>> GetReferencePlayers();
 
         /// <summary>
         /// Identifies an IConnector by service option
         /// </summary>
         /// <returns></returns>
-        ServiceOptions GetServiceOption();
+        ServiceOption GetServiceOption();
 	}
 
     public class DefaultConnector : IConnector
     {
-        public Task<List<Player>> GetActivePlayersForUser()
+        public Task<List<Player>> GetActivePlayers()
         {
             return Task.FromResult(new List<Player>());
         }
 
-        public ServiceOptions GetServiceOption()
+        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
         {
-            return ServiceOptions.Default;
+            return Task.FromResult(new List<ReferencePlayerBase>());
+        }
+
+        public ServiceOption GetServiceOption()
+        {
+            return ServiceOption.Default;
         }
     }
 }

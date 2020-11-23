@@ -18,13 +18,13 @@ namespace FantasyFootballDashboard.Test.Integration.APIConnector
         }
 
         [TestMethod, Ignore]
-        public async Task GetActivePlayersForUser_GetsPlayers()
+        public async Task GetActivePlayers_GetsPlayers()
         {
             // Arrange
             var connector = new EspnConnector(_testProfile.Year, _testProfile.EspnLeagueId, _testProfile.EspnTeamId);
 
             // Act
-            var players = await connector.GetActivePlayersForUser();
+            var players = await connector.GetActivePlayers();
 
             // Assert
             Assert.IsTrue(players.Any());

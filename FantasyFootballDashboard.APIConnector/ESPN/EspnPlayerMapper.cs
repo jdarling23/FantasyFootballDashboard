@@ -1,5 +1,6 @@
 ﻿using FantasyFootballDashboard.APIConnector.ESPN.Models;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Enums;
 
 namespace FantasyFootballDashboard.APIConnector.ESPN
 {
@@ -17,6 +18,8 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
         {
             var mappedPlayer = new Player();
             mappedPlayer.Name = player.FullName;
+            mappedPlayer.Service.Add(ServiceOption.ESPN);
+            mappedPlayer.ServiceIDs.Add(ServiceOption.ESPN, player.EspnPlayerId);
 
             return mappedPlayer;
         }
