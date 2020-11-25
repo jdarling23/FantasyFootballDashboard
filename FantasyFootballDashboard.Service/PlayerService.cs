@@ -2,6 +2,7 @@
 using FantasyFootbalDashboard.DBConnector.Models;
 using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.Models;
+using FantasyFootballDashboard.Models.Collections;
 using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Service.Interfaces;
 using System.Collections.Generic;
@@ -52,9 +53,9 @@ namespace FantasyFootballDashboard.Service
         /// Returns all players from target Fantasy Football services
         /// </summary>
         /// <returns>Collection of player objects</returns>
-        public async Task<IEnumerable<Player>> GetAllUserPlayers()
+        public async Task<IList<Player>> GetAllUserPlayers()
         {
-            var players = new List<Player>();
+            var players = new DataList<Player>();
 
             foreach(IConnector conn in _connectors)
             {

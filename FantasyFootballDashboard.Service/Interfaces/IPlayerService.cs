@@ -20,6 +20,6 @@ namespace FantasyFootballDashboard.Service.Interfaces
         /// Returns all players from target Fantasy Football services
         /// </summary>
         /// <returns>Collection of player objects</returns>
-        Task<IEnumerable<Player>> GetAllUserPlayers();
+        Task<IList<Player>> GetAllUserPlayers();
     }
 }

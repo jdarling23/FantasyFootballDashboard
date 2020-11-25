@@ -110,6 +110,94 @@ namespace FantasyFootballDashboard.Test.Unit.Service
         }
 
         [TestMethod]
+        public async Task GetAllUserPlayers_ReturnsDuplicatePlayersInOneRecord()
+        {
+            // Arrange
+            var connectorOne = new Mock<IConnector>();
+            var connectorTwo = new Mock<IConnector>();
+            var refPlayerRepo = new Mock<IReferencePlayerRepository>();
+
+            var refPlayerTwo = new ReferencePlayer()
+            {
+                Name = "Michael Gallup",
+                Position = (int)Position.WideReceiver,
+                Team = (int)NflTeam.DallasCowboys,
+            };
+
+            var playerOne = new Player()
+            {
+                Name = "Dak Prescott",
+                Team = NflTeam.DallasCowboys,
+                Position = Position.QuarterBack,
+                Service = new List<ServiceOption> { ServiceOption.MyFantasyLeague }
+            };
+
+            var playerTwoEspn = new Player()
+            {
+                Name = "Michael Gallup",
+                Position = Position.None,
+                Team = NflTeam.FreeAgent,
+                Service = new List<ServiceOption> { ServiceOption.ESPN },
+                ServiceIDs = new Dictionary<ServiceOption, int>() { { ServiceOption.ESPN, 12345 } }
+            };
+
+            var playerTwoMfl = new Player()
+            {
+                Name = "Michael Gallup",
+                Position = Position.None,
+                Team = NflTeam.FreeAgent,
+                Service = new List<ServiceOption> { ServiceOption.MyFantasyLeague },
+                ServiceIDs = new Dictionary<ServiceOption, int>() { { ServiceOption.MyFantasyLeague, 456 } }
+            };
+
+            connectorOne.Setup(c => c.GetActivePlayers())
+                .ReturnsAsync(new List<Player>() { playerOne, playerTwoMfl });
+
+            connectorTwo.Setup(c => c.GetActivePlayers())
+                .ReturnsAsync(new List<Player>() { playerTwoEspn });
+
+            refPlayerRepo.Setup(r => r.GetReferencePlayer(It.IsAny<Player>()))
+                .Returns(refPlayerTwo);
+
+            refPlayerRepo.Setup(r => r.SavePlayers(It.IsAny<List<ReferencePlayer>>()))
+                .Verifiable();
+
+            var playerService = new PlayerService(
+                new List<IConnector>() { connectorOne.Object, connectorTwo.Object },
+                refPlayerRepo.Object
+            );
+
+            // Act
+            var result = (await playerService.GetAllUserPlayers())
+                .ToList();
+
+            // Assert
+            Assert.AreEqual(2, result.Count);
+            Assert.IsTrue(result
+                .Select(p => p.Name)
+                .Contains("Dak Prescott"));
+            Assert.IsTrue(result
+                .Select(p => p.Name)
+                .Contains("Michael Gallup"));
+
+            var playerTwoTest = result
+                .Where(p => p.Name.Equals("Michael Gallup"))
+                .First();
+
+            Assert.AreEqual(NflTeam.DallasCowboys, playerTwoTest.Team);
+            Assert.AreEqual(Position.WideReceiver, playerTwoTest.Position);
+
+            Assert.AreEqual(2, playerTwoTest.Service.Count);
+            Assert.IsTrue(playerTwoTest.Service.Contains(ServiceOption.ESPN));
+            Assert.IsTrue(playerTwoTest.Service.Contains(ServiceOption.MyFantasyLeague));
+
+            Assert.AreEqual(2, playerTwoTest.ServiceIDs.Count);
+            Assert.AreEqual(12345, playerTwoTest.ServiceIDs[ServiceOption.ESPN]);
+            Assert.AreEqual(456, playerTwoTest.ServiceIDs[ServiceOption.MyFantasyLeague]);
+            refPlayerRepo.Verify();
+        }
+
+        [TestMethod]
         public async Task GetAllUserPlayers_UpdatesIdINDatabaseOnSync()
         {
             // Arrange
