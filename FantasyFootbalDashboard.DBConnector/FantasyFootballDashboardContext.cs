@@ -8,6 +8,7 @@ namespace FantasyFootbalDashboard.DBConnector
     /// </summary>
     public class FantasyFootballDashboardContext : DbContext
     {
+        public DbSet<ReferenceGame> ReferenceGames { get; set; }
 
         public DbSet<ReferencePlayer> ReferencePlayers { get; set; }
 
