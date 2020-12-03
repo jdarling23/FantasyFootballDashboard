@@ -14,10 +14,10 @@ namespace FantasyFootballDashboard.Service
     /// </summary>
     public class DataService : IDataService
     {
-        private readonly IConnector _sportsDataConnector;
+        private readonly IReferenceConnector _sportsDataConnector;
         private readonly IReferencePlayerRepository _refPlayerRepo;
 
-        public DataService(IConnector sportsDataCon, IReferencePlayerRepository refPlayerRepo)
+        public DataService(IReferenceConnector sportsDataCon, IReferencePlayerRepository refPlayerRepo)
         {
             _sportsDataConnector = sportsDataCon;
             _refPlayerRepo = refPlayerRepo;

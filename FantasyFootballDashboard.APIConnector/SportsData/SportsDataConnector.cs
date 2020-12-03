@@ -1,6 +1,5 @@
 ﻿using FantasyFootballDashboard.APIConnector.Interfaces;
 using FantasyFootballDashboard.APIConnector.SportsData.Models;
-using FantasyFootballDashboard.Models;
 using FantasyFootballDashboard.Models.Enums;
 using FantasyFootballDashboard.Models.Exceptions;
 using Newtonsoft.Json;
@@ -16,7 +15,7 @@ namespace FantasyFootballDashboard.APIConnector.SportsData
     /// Connector object to SportsData.io API.
     /// Read only API bring back needed data for filing player gaps.
     /// </summary>
-    public class SportsDataConnector : IConnector
+    public class SportsDataConnector : IReferenceConnector
     {
         private readonly string _apiKey;
         private readonly RestClient _client;
@@ -28,12 +27,27 @@ namespace FantasyFootballDashboard.APIConnector.SportsData
         }
 
         /// <summary>
-        /// Is not implemented, this cnnector provides player reference data, not user player data.
+        /// Gets all NFL games for a given season 
         /// </summary>
-        /// <returns>Not implemented exception</returns>
-        public Task<List<Player>> GetActivePlayers()
+        /// <param name="year">Year for desired seasn (e.g. 2020, 2017, etc)</param>
+        /// <returns>List of game objects</returns>
+        public async Task<List<SportsDataGame>> GetNflGames(string year)
         {
-            throw new NotImplementedException("This endpoint does not need to return players; it is a not a Fantasy Football Service, but a ref data service.");
+            var request = new RestRequest($"nfl/scores/json/Schedules/{year}");
+            request.AddParameter("key", _apiKey, ParameterType.QueryString);
+
+            var response = await _client.ExecuteAsync(request, Method.GET);
+
+
+            try
+            {
+                var parsedRepsonse = JsonConvert.DeserializeObject<List<SportsDataGame>>(response.Content);
+                return parsedRepsonse.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new GamesNotFoundException($"Could not NFL game data from SportsData.io for {year} season: {ex.Message}");
+            }
         }
 
         /// <summary>

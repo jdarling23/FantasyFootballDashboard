@@ -6,9 +6,9 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
     public class CbsTester : ITester
     {
-        private readonly IConnector _cbsConnector;
+        private readonly IFantasyConnector _cbsConnector;
 
-        public CbsTester(IConnector cbsConnector)
+        public CbsTester(IFantasyConnector cbsConnector)
         {
             _cbsConnector = cbsConnector;
         }

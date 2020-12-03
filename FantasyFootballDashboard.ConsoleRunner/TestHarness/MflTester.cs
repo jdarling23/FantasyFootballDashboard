@@ -6,9 +6,9 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
     public class MflTester : ITester
     {
-        private readonly IConnector _mflConnector;
+        private readonly IFantasyConnector _mflConnector;
 
-        public MflTester(IConnector mflConnector)
+        public MflTester(IFantasyConnector mflConnector)
         {
             _mflConnector = mflConnector;
         }

@@ -15,7 +15,7 @@ namespace FantasyFootballDashboard.APIConnector.MFL
     /// <summary>
     /// Connects to MyFantasyLeague API to interact with their data
     /// </summary>
-    public class MflConnector : IConnector
+    public class MflConnector : IFantasyConnector
     {
         private readonly Dictionary<string, string> _cookies;
         private readonly RestClient _client;
@@ -85,15 +85,6 @@ namespace FantasyFootballDashboard.APIConnector.MFL
             }
 
             return playersToReturn;
-        }
-
-        /// <summary>
-		/// CBS does not provide reference players
-		/// </summary>
-		/// <returns>NotImplementedException</returns>
-        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

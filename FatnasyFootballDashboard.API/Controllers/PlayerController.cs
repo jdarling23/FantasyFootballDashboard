@@ -52,7 +52,7 @@ namespace FatnasyFootballDashboard.API.Controllers
                 return BadRequest("Provided User Profile object was null");
             }
 
-            var connectors = new List<IConnector>();
+            var connectors = new List<IFantasyConnector>();
 
             try
             {

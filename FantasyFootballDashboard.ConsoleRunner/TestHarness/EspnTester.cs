@@ -6,9 +6,9 @@ namespace FantasyFootballDashboard.ConsoleRunner.TestHarness
 {
     public class EspnTester : ITester
     {
-        private readonly IConnector _espnConnector;
+        private readonly IFantasyConnector _espnConnector;
 
-        public EspnTester(IConnector espnConnector)
+        public EspnTester(IFantasyConnector espnConnector)
         {
             _espnConnector = espnConnector;
         }

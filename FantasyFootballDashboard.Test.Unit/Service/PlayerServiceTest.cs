@@ -42,8 +42,8 @@ namespace FantasyFootballDashboard.Test.Unit.Service
         public async Task GetAllUserPlayers_ReturnsPlayers()
         {
             // Arrange
-            var connectorOne = new Mock<IConnector>();
-            var connectorTwo = new Mock<IConnector>();
+            var connectorOne = new Mock<IFantasyConnector>();
+            var connectorTwo = new Mock<IFantasyConnector>();
             var refPlayerRepo = new Mock<IReferencePlayerRepository>();
 
             var refPlayerTwo = new ReferencePlayer()
@@ -83,7 +83,7 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 .Verifiable();
 
             var playerService = new PlayerService(
-                new List<IConnector>() { connectorOne.Object, connectorTwo.Object },
+                new List<IFantasyConnector>() { connectorOne.Object, connectorTwo.Object },
                 refPlayerRepo.Object
             );
 
@@ -113,8 +113,8 @@ namespace FantasyFootballDashboard.Test.Unit.Service
         public async Task GetAllUserPlayers_ReturnsDuplicatePlayersInOneRecord()
         {
             // Arrange
-            var connectorOne = new Mock<IConnector>();
-            var connectorTwo = new Mock<IConnector>();
+            var connectorOne = new Mock<IFantasyConnector>();
+            var connectorTwo = new Mock<IFantasyConnector>();
             var refPlayerRepo = new Mock<IReferencePlayerRepository>();
 
             var refPlayerTwo = new ReferencePlayer()
@@ -163,7 +163,7 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 .Verifiable();
 
             var playerService = new PlayerService(
-                new List<IConnector>() { connectorOne.Object, connectorTwo.Object },
+                new List<IFantasyConnector>() { connectorOne.Object, connectorTwo.Object },
                 refPlayerRepo.Object
             );
 
@@ -201,8 +201,8 @@ namespace FantasyFootballDashboard.Test.Unit.Service
         public async Task GetAllUserPlayers_UpdatesIdINDatabaseOnSync()
         {
             // Arrange
-            var connectorOne = new Mock<IConnector>();
-            var connectorTwo = new Mock<IConnector>();
+            var connectorOne = new Mock<IFantasyConnector>();
+            var connectorTwo = new Mock<IFantasyConnector>();
             var refPlayerRepo = new ReferencePlayerRepository(_context);
 
             var refPlayerTwo = new ReferencePlayer()
@@ -239,7 +239,7 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 .ReturnsAsync(new List<Player>() { playerTwo });
 
             var playerService = new PlayerService(
-                new List<IConnector>() { connectorOne.Object, connectorTwo.Object },
+                new List<IFantasyConnector>() { connectorOne.Object, connectorTwo.Object },
                 refPlayerRepo
             );
 

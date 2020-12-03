@@ -14,7 +14,7 @@ namespace FantasyFootballDashboard.Service.Interfaces
         /// Allows you to add additional connectors to the service
         /// </summary>
         /// <param name="connToAdd">Connection to add</param>
-        void AddConnector(IConnector connToAdd);
+        void AddConnector(IFantasyConnector connToAdd);
 
         /// <summary>
         /// Returns all players from target Fantasy Football services

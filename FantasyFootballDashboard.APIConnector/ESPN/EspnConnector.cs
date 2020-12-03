@@ -15,7 +15,7 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
     /// <summary>
     /// Connects to ESPN Fantasy Sports API to interact with their data
     /// </summary>
-    public class EspnConnector : IConnector
+    public class EspnConnector : IFantasyConnector
     {
         private readonly RestClient _client;
 
@@ -67,15 +67,6 @@ namespace FantasyFootballDashboard.APIConnector.ESPN
                 .ToList();
 
             return mappedPlayers;
-        }
-
-        /// <summary>
-		/// CBS does not provide reference players
-		/// </summary>
-		/// <returns>NotImplementedException</returns>
-        public Task<List<ReferencePlayerBase>> GetReferencePlayers()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

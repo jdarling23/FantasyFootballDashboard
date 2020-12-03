@@ -19,9 +19,9 @@ namespace FantasyFootballDashboard.Service
         /// </summary>
         /// <param name="userProfile">Object containing user credentials for Fantasy Football services</param>
         /// <returns>List of connection objects</returns>
-        public static List<IConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile, ILogger logger = null)
+        public static List<IFantasyConnector> GenerateConnectionsFromUserProfile(UserProfile userProfile, ILogger logger = null)
         {
-            var connectors = new List<IConnector>();
+            var connectors = new List<IFantasyConnector>();
 
             if(!string.IsNullOrEmpty(userProfile.CbsUsername) && !string.IsNullOrEmpty(userProfile.CbsLeagueName))
             {

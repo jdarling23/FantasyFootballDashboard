@@ -1,7 +1,7 @@
 ﻿namespace FantasyFootballDashboard.APIConnector.Interfaces
 {
     /// <summary>
-    /// Abstract class defining wha fields we want from a reference player
+    /// Abstract class defining what fields we want from a reference player
     /// </summary>
     public abstract class ReferencePlayerBase
     {

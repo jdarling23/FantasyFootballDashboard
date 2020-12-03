@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using FantasyFootballDashboard.APIConnector.CBS.Models;
 using FantasyFootballDashboard.APIConnector.Interfaces;
@@ -16,7 +15,7 @@ namespace FantasyFootballDashboard.APIConnector.CBS
     /// <summary>
     /// Connects to CBS Sports API to interact with their data
     /// </summary>
-    public class CbsConnector : IConnector
+    public class CbsConnector : IFantasyConnector
 	{
 		private readonly string _leagueName;
 		private readonly CbsPlayerMapper _playerMapper;
@@ -70,15 +69,6 @@ namespace FantasyFootballDashboard.APIConnector.CBS
 
 			return mappedPlayers.ToList();
 		}
-
-		/// <summary>
-		/// CBS does not provide reference players
-		/// </summary>
-		/// <returns>NotImplementedException</returns>
-		public Task<List<ReferencePlayerBase>> GetReferencePlayers()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Returns enum for this connector

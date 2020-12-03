@@ -143,7 +143,7 @@ namespace FantasyFootballDashboard.Test.Unit.Service
                 inactiveSportsDataPlayer
             };
 
-            var sportsDataConnector = new Mock<IConnector>();
+            var sportsDataConnector = new Mock<IReferenceConnector>();
             sportsDataConnector.Setup(c => c.GetReferencePlayers())
                 .ReturnsAsync(sportsDataPlayerResults);
 

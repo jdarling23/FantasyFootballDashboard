@@ -12,7 +12,7 @@ namespace FantasyFootballDashboard.ConsoleRunner
         static void Main(string[] args)
         {
             // Prepare default objects
-            IConnector connector = new DefaultConnector();
+            IFantasyConnector connector = new DefaultFantasyConnector();
             ITester tester = new DefaultTester();
 
             // Set Service to Test

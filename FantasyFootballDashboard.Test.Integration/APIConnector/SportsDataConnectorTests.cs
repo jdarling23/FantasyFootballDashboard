@@ -17,6 +17,19 @@ namespace FantasyFootballDashboard.Test.Integration.APIConnector
         }
 
         [TestMethod, Ignore]
+        public async Task GetNflGames_ReturnsGames()
+        {
+            // Arrange
+            var connector = new SportsDataConnector(_apiKey);
+
+            // Act
+            var games = await connector.GetNflGames("2020");
+
+            // Assert
+            Assert.IsTrue(games.Any());
+        }
+
+        [TestMethod, Ignore]
         public async Task GetReferencePlayerData_ReturnsPlayer()
         {
             // Arrange
